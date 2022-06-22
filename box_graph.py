@@ -13,6 +13,8 @@ def plot_box_chart(tap_nbr, tap_operation_time):
     fig = px.box(tap_operation_time, 
         x = tap_nbr, 
         y = tap_operation_time,
+        labels = {'Tap number', 'Time - [sec]'},
+        range_x=[0,19],
         )
     return fig
 
