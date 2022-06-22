@@ -14,6 +14,7 @@ def plot_box_chart(tap_nbr, tap_operation_time):
         x = tap_nbr, 
         y = tap_operation_time,
         )
+    return fig
 
 plot_box_chart(oltc_data['tapAfter'], oltc_data['tapOperationTime']) # temporary until data are processed. 
                                                                      # function call will be done in app.py file
