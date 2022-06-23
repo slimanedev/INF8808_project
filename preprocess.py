@@ -26,3 +26,12 @@ def get_traf_we_data(data):
     we_data['Time']= we_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
 
     return we_data
+
+def drop_irrelevant_time(data):
+    out = []
+    for i in range(len(data['Time'])):
+        if (data['Time'][i][-2:] != 'AM') & (data['Time'][i][-2:] != 'PM'):
+            out.append(i)
+    new_data = data.drop(labels=out, axis=0)
+    
+    return new_data
