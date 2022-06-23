@@ -6,23 +6,25 @@ from dash import dcc
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
-
+import box_graph
 #Use the preprocess to manage the data. You can add fucntions if it's necessary
-
-df = pd.read_csv('./fakedata_to_delete.csv')
 
 with open('./OLTCresults.csv', encoding='utf-8') as data_file:
     oltc_data = pd.read_csv(data_file)
+#Use the preprocess to manage the data. You can add fucntions if it's necessary
 
+idx=oltc_data[(oltc_data['Time'].str.contains('AM|PM'))].index
+data=oltc_data.iloc[idx,:]
 
+fig=box_graph.plot_box_chart(data)
+fig.update_layout(height=600, width=1000)
+fig.update_layout(dragmode=False)
 
 layout = html.Div([
-            html.H1('Day by day data',
+            html.H1('Visualizations on the performance of Tap changer',
                     style={'textAlign':'center'}),
-            dcc.Graph(id='bargraph',
-                    figure= box_graph.plot_box_chart(oltc_data['tapAfter'], 
-                        oltc_data['tapOperationTime'],
+            dcc.Graph(id='boxplot',
+                    figure= fig
                 )
-            )
         ]
-    )
+)
