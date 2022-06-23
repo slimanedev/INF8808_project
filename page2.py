@@ -14,6 +14,8 @@ df = pd.read_csv('./fakedata_to_delete.csv')
 with open('./OLTCresults.csv', encoding='utf-8') as data_file:
     oltc_data = pd.read_csv(data_file)
 
+
+
 layout = html.Div([
             html.H1('Day by day data',
                     style={'textAlign':'center'}),
