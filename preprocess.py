@@ -28,10 +28,7 @@ def get_traf_we_data(data):
     return we_data
 
 def drop_irrelevant_time(data):
-    out = []
-    for i in range(len(data['Time'])):
-        if (data['Time'][i][-2:] != 'AM') & (data['Time'][i][-2:] != 'PM'):
-            out.append(i)
-    new_data = data.drop(labels=out, axis=0)
+    idx = data[(data['Time'].str.contains('AM|PM'))].index
+    new_data = data.iloc(idx,:)
     
     return new_data
