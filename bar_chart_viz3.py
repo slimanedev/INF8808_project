@@ -58,8 +58,8 @@ else:
 df1 = pd.DataFrame(data)
 
 ### Create the exact time #########
-lst = list(np.int32(df1['Time_in_Hours']*100))
-df1['Time_in_Hours'] = [dt.time(hour=x//100).strftime("%H:%M") for x in lst]
+lst = list(np.int32(df1['Time_in_Hours']))
+df1['Time_in_Hours'] = [dt.time(hour=x).strftime("%H:%M") for x in lst]
 
 #######################
 def bar_plot_Max_CircCurr(tap):
