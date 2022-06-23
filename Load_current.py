@@ -32,6 +32,6 @@ def get_transformer_avg_current_plot (data1,data2, year):
     fig.update_layout(title= f'Average Load current on Transformer during hours of the day in year {year}',
                     xaxis_title='hours of the day',
                     yaxis_title= 'Load current (KA)',
-                    height=500, width=800)
-
+                    #height=500, width=800)
+    )
     return fig

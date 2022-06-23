@@ -3,43 +3,60 @@ import dash
 import preprocess
 import dash_html_components as html
 #import dash_core_components as dcc
-from dash import dcc
+from dash import Dash, dcc, html, Input, Output
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
+import preprocess
 import Load_current
 
-#Use the preprocess to manage the data. You can add fucntions if it's necessary
+
+app = Dash(__name__)
 
 with open('./OLTCresults.csv', encoding='utf-8') as data_file:
     oltc_data = pd.read_csv(data_file)
- 
-#I will add the following to the processor file later 
-    
-data=oltc_data.copy()
-data['Date']=pd.to_datetime(data['Date'])
-idx=data['Date'].dt.weekday > 4  # sunday=6, saturday=5; for weekends
-we_data=data.loc[idx, ['Date', 'Time', 'TrafoLoadCurr']]  #data for weekends
-wd_data=data.loc[~idx, ['Date', 'Time', 'TrafoLoadCurr']] #data for weekdays
+#Use the preprocess to manage the data. You can add fucntions if it's necessary
 
-wd_data['Time']=wd_data['Time'].astype(str)
-wd_data['Time']=wd_data['Time'].apply(lambda x: x[:2])
-we_data['Time']=we_data['Time'].astype(str)
-we_data['Time']=we_data['Time'].apply(lambda x: x[:2])
+idx=oltc_data[(oltc_data['Time'].str.contains('AM|PM'))].index
+data=oltc_data.iloc[idx,:]
 
-fig=Load_current.get_transformer_avg_current_plot(wd_data,we_data, 2018)
+wd_data = preprocess.get_traf_wd_data(data)
+we_data= preprocess.get_traf_we_data(data)
 
+fig=Load_current.get_transformer_avg_current_plot(wd_data,we_data, 2015)
+fig.update_layout(height=600, width=1000)
+fig.update_layout(dragmode=False)
 
 layout = html.Div([
-            html.H1('Transformer Load current over the ours of the day',
+            html.H1('Transformer Load current over hours of the day',
                     style={'textAlign':'center'}),
-            dcc.Graph(id='bargraph',
-                    figure=fig
+            
+            html.H3('Select the year from the dropdown below:'),
+            dcc.Dropdown(
+                [2015,2016,2017,2018,2019,2020],
+                2015,
+                id='year'
+            ),
+            dcc.Graph(id='linegraph',
+                      figure=fig
                 )
             ]
     )
 
 
+@app.callback(
+    Output('linegraph', 'figure'),
+    Input('year', 'value'))
+def update_graph(year):
+     wd_data = preprocess.get_traf_wd_data(data)
+     we_data= preprocess.get_traf_we_data(data)
+     fig=Load_current.get_transformer_avg_current_plot(wd_data,we_data, year)
+     return fig   
+
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+    
 '''layout = html.Div([
             html.H1('Lifespan data',
                     style={'textAlign':'center'}),
