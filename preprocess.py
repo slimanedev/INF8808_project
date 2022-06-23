@@ -29,6 +29,6 @@ def get_traf_we_data(data):
 
 def drop_irrelevant_time(data):
     idx = data[(data['Time'].str.contains('AM|PM'))].index
-    new_data = data.iloc(idx,:)
+    new_data = data.iloc[idx,:]
     
     return new_data
