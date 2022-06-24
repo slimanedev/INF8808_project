@@ -47,7 +47,7 @@ layout = html.Div([
 
 fig2_1= bar_chart_viz2.BarChart(data)
 layout = html.Div([
-            html.H1('Circulating Current Amplitude',
+            html.H1('Change of Tap',
                     style={'textAlign':'center'}),
             dcc.Graph(id='boxplot',
                     figure= fig2_1
