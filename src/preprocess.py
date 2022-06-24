@@ -32,3 +32,17 @@ def drop_irrelevant_time(data):
     new_data = data.iloc[idx,:]
     
     return new_data
+
+def get_monthly_average_current (df):
+
+    df1=df[['Date', 'Time', 'TrafoLoadCurr', 'tapCircCurrAmp']]
+    df1['year']=df1['Date'].dt.year
+    df1['month']=df1['Date'].dt.month_name()
+
+    df2=df1.groupby(['year', 'month'], as_index=False).agg({'tapCircCurrAmp': 'mean'})
+    df2=df2.sort_values(['year', 'month'])
+    df2.reset_index(drop=True)
+    
+    return df2
+
+
