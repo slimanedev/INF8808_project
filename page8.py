@@ -1,3 +1,6 @@
+df = pd.read_csv('OLTCresults.csv')
+
+
 def histogram_viz8(df):
     fig = px.histogram(df, x="Date", y="tapCircCurrAmp", title="Circulating Current Amplitude") 
     fig.update_layout(
