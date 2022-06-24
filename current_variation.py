@@ -2,10 +2,7 @@ import plotly.express as px
 import pandas as pd
 
 
-df = pd.read_csv('OLTCresults.csv')
-
-
-def histogram_viz8(df):
+def plot_current_variation(df):
     fig = px.histogram(df, x="Date", y="tapCircCurrAmp") 
     fig.update_layout(
 

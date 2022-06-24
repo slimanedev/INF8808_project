@@ -1,5 +1,5 @@
 import dash
-import preprocess, box_graph, line_graph,page8
+import preprocess, box_graph, line_graph, current_variation
 import dash_html_components as html
 #import dash_core_components as dcc
 from dash import dcc
@@ -16,10 +16,12 @@ with open('./OLTCresults.csv', encoding='utf-8') as data_file:
 idx=oltc_data[(oltc_data['Time'].str.contains('AM|PM'))].index
 data=oltc_data.iloc[idx,:]
 
+# Plot for box chart
 fig=box_graph.plot_box_chart(data)
 fig.update_layout(height=600, width=1000)
 fig.update_layout(dragmode=False)
 
+# Plot for Line_chart (not finished)
 fig2 = line_graph.plot_line_chart(data)
 
 layout = html.Div([
@@ -31,7 +33,8 @@ layout = html.Div([
         ]
 )
 
-fig8_1=page8.histogram_viz8(oltc_data)
+# Plot for histogram
+fig8_1=current_variation.plot_current_variation(data)
 
 layout = html.Div([
             html.H1('Circulating Current Amplitude',
