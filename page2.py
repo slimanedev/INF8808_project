@@ -1,5 +1,5 @@
 import dash
-import preprocess, box_graph, line_graph, current_variation, Histogram_viz8
+import preprocess, box_graph, line_graph, current_variation, bar_char_viz2
 import dash_html_components as html
 #import dash_core_components as dcc
 from dash import dcc
@@ -41,6 +41,16 @@ layout = html.Div([
                     style={'textAlign':'center'}),
             dcc.Graph(id='boxplot',
                     figure= fig8_1
+                )
+        ]
+)
+
+fig2_1= bar_char_viz2.BarChart(data)
+layout = html.Div([
+            html.H1('Circulating Current Amplitude',
+                    style={'textAlign':'center'}),
+            dcc.Graph(id='boxplot',
+                    figure= fig2_1
                 )
         ]
 )
