@@ -2,6 +2,7 @@ import pandas as pd
 import preprocess
 import plotly.express as px
 import datetime as dt
+import numpy as np
 
 # Get the data (temporary solution until data are processed)
 with open('./OLTCresults.csv', encoding='utf-8') as data_file:
