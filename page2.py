@@ -45,7 +45,7 @@ layout = html.Div([
         ]
 )
 
-fig2_1= bar_char_viz2.BarChart(data)
+fig2_1= bar_chart_viz2.BarChart(data)
 layout = html.Div([
             html.H1('Circulating Current Amplitude',
                     style={'textAlign':'center'}),
