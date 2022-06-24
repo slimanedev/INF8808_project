@@ -3,9 +3,6 @@ import pandas as pd
 import collections
 
 
-
-df = pd.read_csv('OLTCresults.csv')
-
 def BarChart(df):
         tapAfter=df['tapAfter'].tolist()
         tapBefore=df['tapBefore'].tolist()

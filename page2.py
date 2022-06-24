@@ -44,7 +44,7 @@ layout = html.Div([
                 )
         ]
 )
-
+# Plot bar chart tracking number of tap changes
 fig2_1= bar_chart_viz2.BarChart(data)
 layout = html.Div([
             html.H1('Change of Tap',
