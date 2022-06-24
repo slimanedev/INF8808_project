@@ -10,4 +10,12 @@ df = pd.read_csv('OLTCresults.csv')
 
 def Histogram(df):
     fig = px.histogram(df, x="Date", y="tapCircCurrAmp", title="Circulating Current Amplitude") 
-    return fig
+    fig.update_layout(
+    xaxis_title="Date(Year)",
+    yaxis_title="Circulating Current Amplitude(KA)",
+    font=dict(
+        family="Courier New, monospace",
+        size=14,
+        color="RebeccaPurple"
+    )
+)
