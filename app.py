@@ -52,8 +52,8 @@ sidebar = html.Div(
         dbc.Nav(
             [
                 dbc.NavLink("Dashboard", href="/", active="exact"),
-                dbc.NavLink("Lifespan data", href="/page-1", active="exact"),
-                dbc.NavLink("Day by day data", href="/page-2", active="exact"),
+                dbc.NavLink("Transformer Performance", href="/page-1", active="exact"),
+                dbc.NavLink("Tap changer Performance", href="/page-2", active="exact"),
             ],
             vertical=True,
             pills=True,
