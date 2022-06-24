@@ -1,27 +1,6 @@
 import pandas as pd
 import preprocess
 import plotly.express as px
-import plotly.graph_objects as go
-
-
-'''# Get the data (temporary solution until data are processed)
-with open('./OLTCresults.csv', encoding='utf-8') as data_file:
-    oltc_data = pd.read_csv(data_file)
-
-data_time = oltc_data['tapOperationTime']
-
-def plot_box_chart(tap_nbr, tap_operation_time):
-    fig = px.box(tap_operation_time, 
-        x = tap_nbr, 
-        y = tap_operation_time,
-        labels = {'Tap number', 'Time - [sec]'},
-        range_x=[0,19],
-        )
-    return fig
-
-plot_box_chart(oltc_data['tapAfter'], oltc_data['tapOperationTime'])''' # temporary until data are processed. 
-                                                                     # function call will be done in app.py file
-
 
 def plot_box_chart(data):
     
@@ -44,6 +23,17 @@ def plot_box_chart(data):
               annotation_font_size=15,
               annotation_font_color="black"
              )
+    
+    critical_value= 1/(50*2) # Critical value not to reach (half a cycle)
+
+    fig.add_hline(y= critical_value,
+        line_dash= 'dash',
+        line_color= 'red',
+        annotation_text="Critical value not to reach",
+        annotation_position="top right",
+        annotation_font_size=15,
+        annotation_font_color="black",
+    )
     
     fig.update_layout(
         title="Box-plot for the tap operation time based on the tap position",
