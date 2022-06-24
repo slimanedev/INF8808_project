@@ -48,7 +48,7 @@ def plot_box_chart(data):
     fig.update_layout(
         title="Box-plot for the tap operation time based on the tap position",
         xaxis_title= "Tap position",
-        yaxis_title= 'Tap operation time (ms)'
+        yaxis_title= 'Tap operation time (second)'
     )
         
     return fig
