@@ -42,16 +42,16 @@ layout = html.Div([
 )
 
 # Plot for histogram
-#fig8_1=current_variation.plot_current_variation(data)
+fig8_1=current_variation.plot_current_variation(data)
 
-'''layout = html.Div([
-            html.H1('Circulating Current Amplitude',
+layout = html.Div([
+            html.H1(' Variation of circulating current amplitude over time',
                     style={'textAlign':'center'}),
             dcc.Graph(id='boxplot',
                     figure= fig8_1
                 )
         ]
-)'''
+)
 # Plot bar chart tracking number of tap changes
 '''fig2_1= bar_chart_viz2.BarChart(data)
 layout = html.Div([
