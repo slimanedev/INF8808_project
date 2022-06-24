@@ -31,7 +31,4 @@ layout = html.Div([
         ]
 )
 
-year=2020
-month=4
 fig8_1=page8.histogram_viz8(oltc_data)
-fig8_2=page8.violin_vis8(oltc_data,year,month)
