@@ -16,6 +16,6 @@ def histogram_viz8(df):
 
         )
 
-)
+
     return fig
 
