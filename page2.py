@@ -1,5 +1,5 @@
 import dash
-import preprocess, box_graph, line_graph, current_variation, bar_char_viz2
+import preprocess, box_graph, line_graph, current_variation, bar_chart_viz2
 import dash_html_components as html
 #import dash_core_components as dcc
 from dash import dcc
