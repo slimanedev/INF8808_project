@@ -32,3 +32,12 @@ layout = html.Div([
 )
 
 fig8_1=page8.histogram_viz8(oltc_data)
+
+layout = html.Div([
+            html.H1('Circulating Current Amplitude',
+                    style={'textAlign':'center'}),
+            dcc.Graph(id='boxplot',
+                    figure= fig8_1
+                )
+        ]
+)
