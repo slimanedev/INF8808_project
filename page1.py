@@ -67,7 +67,65 @@ def update_graph(year):
      fig2=Load_current.get_transformer_max_current_plot(wd_data,we_data, year)
      return fig1,fig2  
 
+    
+fig6 = viz_six.dumbbell_plot(oltc_data,2015, 5)
+oltc_data['Date'] = pd.to_datetime(oltc_data['Date'])
+years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
+layout = html.Div([
+    html.Div([
+        html.Div([
+
+            html.Label('year'),
+            dcc.Dropdown(
+                 id = 'years',
+                 options = [{
+                         'label' : i, 
+                         'value' : i
+                 } for i in years],
+                value = '2015',
+                clearable = True
+
+                 ),
+                ]),
+
+        html.Div([
+
+            html.Label('month'),
+            dcc.Dropdown(
+             id = 'months',
+             options = [],
+             value = '5', 
+             clearable = True)
+             ,
+        ]),
+            ]),
+
+    dcc.Graph(id = 'fig-six', figure=fig6)
+    ])
+
+
+@app.callback(
+    Output('months', 'options'),
+    Input('years', 'value')
+)
+def set_month_options(year):
+    d_year = oltc_data[(oltc_data['Date'].dt.strftime('%Y') == year)]
+    return [{'label': i, 'value': i} for i in (d_year['Date'].dt.strftime('%m')).unique()]
+
+@app.callback(
+    Output('fig-six', 'figure'),
+    Input('years', 'value'),
+    Input('months', 'value')
+)
+def update_graph(year, month):
+
+    if (year == None) or (month == None):
+        return dash.no_update
+    else:
+        fig6 = viz_six.dumbbell_plot(oltc_data,year, month)
+
+    return fig6
 if __name__ == '__main__':
     app.run_server(debug=True)
     
