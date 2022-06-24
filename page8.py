@@ -1,4 +1,4 @@
-def Histogram(df):
+def histogram_viz8(df):
     fig = px.histogram(df, x="Date", y="tapCircCurrAmp", title="Circulating Current Amplitude") 
     fig.update_layout(
     yaxis_title="Circulating Current Amplitude(KA)",
@@ -10,7 +10,7 @@ def Histogram(df):
 )
     return fig
 
-def violin(df,year,month):
+def violin_vis8(df,year,month):
     df2=df
     df2['Date'] = pd.to_datetime(df2['Date'])
     df2 = df2.loc[df2['Date'].dt.year == year]
