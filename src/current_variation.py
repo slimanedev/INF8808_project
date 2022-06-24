@@ -1,17 +1,23 @@
-import plotly.express as px
 import pandas as pd
+import proccess
+import plotly.graph_objects as go
 
+def get_monthly_current_plot(df):
 
-def plot_current_variation(df):
-    fig = px.histogram(df, x="Date", y="tapCircCurrAmp") 
-    fig.update_layout(
+    year_list = df['year'].unique().tolist()
 
-        yaxis = dict( tickfont = dict(size=20),title_font_size=20,range=[0, 1.6]),
-        xaxis = dict( tickfont = dict(size=20),title_font_size=20)
+    month = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+            'August', 'September', 'October', 'November', 'December']
 
+    fig = go.Figure()
+    for year in year_list:
+        df_year = df[df.year==year]
+        df_year = df_year.sort_values(by=['month'])
+        fig.add_trace(go.Bar(x=df_year.month, y=df_year['tapCircCurrAmp'], 
+                            name=year))
 
-        )
-
+    fig.update_xaxes(categoryorder='array', categoryarray= month)
+    fig.update_yaxes(title='Average tap circulating current (KA)')
+    fig.update_layout(title="Average tap circulating current over months of the years")
 
     return fig
-
