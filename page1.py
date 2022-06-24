@@ -74,10 +74,10 @@ oltc_data['Date'] = pd.to_datetime(oltc_data['Date'])
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 layout = html.Div([
+    html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
     html.Div([
         html.Div([
-
-            html.Label('year'),
+            html.Label('Select the year:'),
             dcc.Dropdown(
                  id = 'years',
                  options = [{
@@ -88,19 +88,19 @@ layout = html.Div([
                 clearable = True
 
                  ),
-                ]),
+                ], style=dict(width='50%')),
 
         html.Div([
 
-            html.Label('month'),
+            html.Label('Select the month:'),
             dcc.Dropdown(
              id = 'months',
              options = [],
              value = '5', 
              clearable = True)
              ,
-        ]),
-            ]),
+        ], style=dict(width='50%')),
+            ], style=dict(display='flex')),
 
     dcc.Graph(id = 'fig-six', figure=fig6)
     ])
