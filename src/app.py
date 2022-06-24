@@ -5,7 +5,7 @@ To create a virtual env : python -m virtualenv -p python3.8 venv
 To activate a virtual env : source venv/bin/activate
 
 """
-import dash
+import pathlib, dash
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash import dcc
@@ -15,16 +15,20 @@ from dash.dependencies import Input, Output
 import pandas as pd
 import page1, page2, dashboard
 
+PATH = pathlib.Path(__file__).parent
+DATA_PATH = PATH.joinpath("data").resolve()
 
 # Get the data
-with open('./OLTCresults.csv', encoding='utf-8') as data_file:
-    oltc_data = pd.read_csv(data_file)
+oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
 # Preprocess the data (I will use the object "preprocess.py")
-df = pd.read_csv('./fakedata_to_delete.csv')
+# df = pd.read_csv('./fakedata_to_delete.csv')
 
 # Initiate the app 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Declare server for Heroku deployment
+server = app.server
 
 # styling the sidebar
 SIDEBAR_STYLE = {
@@ -96,3 +100,6 @@ def render_page_content(pathname):
             html.P(f"The pathname {pathname} was not recognised..."),
         ]
     )
+
+if __name__ == '__main__':
+    app.run_server(debug=False)

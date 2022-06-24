@@ -1,5 +1,5 @@
-import dash
-import preprocess
+import dash, pathlib, preprocess
+import dash_bootstrap_components as dbc
 import dash_html_components as html
 #import dash_core_components as dcc
 from dash import dcc
@@ -9,14 +9,16 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
 
-#Use the preprocess to manage the data. You can add fucntions if it's necessary
+PATH = pathlib.Path(__file__).parent
+DATA_PATH = PATH.joinpath("data").resolve()
 
-df = pd.read_csv('./OLTCresults.csv')
+# Get the data
+oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
-print(df.head(5))
+print(oltc_data.head(5))
 
 
-fig=px.bar(df, barmode='group', x='tapBefore',
+fig=px.bar(oltc_data, barmode='group', x='tapBefore',
                 y=['tapPowerLossAmp'],
                 title="Power Loss average per tap (Kw)",
                 labels={'value':'Power(Kw)','tapBefore':'Taps'},

@@ -1,6 +1,7 @@
-import dash
+import pathlib, dash
 import preprocess, box_graph, line_graph, current_variation, bar_chart_viz2
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 #import dash_core_components as dcc
 from dash import dcc
 from dash.dependencies import Input, Output, State
@@ -9,9 +10,11 @@ import pandas as pd
 import preprocess
 #Use the preprocess to manage the data. You can add fucntions if it's necessary
 
-with open('./OLTCresults.csv', encoding='utf-8') as data_file:
-    oltc_data = pd.read_csv(data_file)
-#Use the preprocess to manage the data. You can add fucntions if it's necessary
+PATH = pathlib.Path(__file__).parent
+DATA_PATH = PATH.joinpath("data").resolve()
+
+# Get the data
+oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
 #idx=oltc_data[(oltc_data['Time'].str.contains('AM|PM'))].index
 #data=oltc_data.iloc[idx,:]
