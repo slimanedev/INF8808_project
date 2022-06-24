@@ -30,3 +30,5 @@ layout = html.Div([
                 )
         ]
 )
+
+fig8=page8. histogram_viz8(oltc_data)
