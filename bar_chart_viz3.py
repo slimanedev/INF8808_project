@@ -10,13 +10,14 @@ with open('./OLTCresults.csv', encoding='utf-8') as data_file:
    
 oltc_data = preprocess.drop_irrelevant_time(oltc_data)
 
+
+                           
+
 # Chnage the Time format
-oltc_data['Time'] = pd.to_datetime(oltc_data['Time'], format='%I:%M:%S %p').dt.strftime('%H:%M:%S')
+oltc_data['Time']= oltc_data['Time'].apply(lambda x:dt.datetime.strptime(x, "%I:%M:%S %p").hour)
 
 Time_sorted_data = oltc_data.sort_values('Time')
-
-Time_sorted_data['Time'] = Time_sorted_data['Time'].astype('datetime64[ns]')
-h = Time_sorted_data.Time.dt.hour.head(len(Time_sorted_data['Time']))
+h = Time_sorted_data['Time']
 
 ####### in the next step, we design the radio button for this part #######
 #tap = 'tapAfter'
@@ -103,7 +104,7 @@ def fig_update(fig):
                 )
             )
         return fig
-    
+   
 fig = bar_plot_animation_Max_loadCurr(tap1)
+#fig = bar_plot_Max_loadCurr(tap1)
 fig_update(fig)
-
