@@ -71,41 +71,42 @@ def update_graph(year):
      return fig1,fig2  
 
     
-fig6 = viz_six.dumbbell_plot(oltc_data,2015, 5)
+fig_viz6 = viz_six.dumbbell_plot(oltc_data,2015, 5)
 oltc_data['Date'] = pd.to_datetime(oltc_data['Date'])
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
-layout = html.Div([
-    html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
-    html.Div([
-        html.Div([
-            html.Label('Select the year:'),
-            dcc.Dropdown(
-                 id = 'years',
-                 options = [{
-                         'label' : i, 
-                         'value' : i
-                 } for i in years],
-                value = '2015',
-                clearable = True
+#  layout = html.Div([
+    # html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
+    # html.Div([
+    #     html.Div([
+    #         html.Label('Select the year:'),
+    #         dcc.Dropdown(
+    #              id = 'years',
+    #              options = [{
+    #                      'label' : i, 
+    #                      'value' : i
+    #              } for i in years],
+    #             value = '2015',
+    #             clearable = True
 
-                 ),
-                ], style=dict(width='50%')),
+    #              ),
+    #             ], style=dict(width='50%')),
 
-        html.Div([
+    #     html.Div([
 
-            html.Label('Select the month:'),
-            dcc.Dropdown(
-             id = 'months',
-             options = [],
-             value = '5', 
-             clearable = True)
-             ,
-        ], style=dict(width='50%')),
-            ], style=dict(display='flex')),
+    #         html.Label('Select the month:'),
+    #         dcc.Dropdown(
+    #          id = 'months',
+    #          options = [],
+    #          value = '5', 
+    #          clearable = True)
+    #          ,
+    #     ], style=dict(width='50%')),
+    #         ], style=dict(display='flex')),
 
-    dcc.Graph(id = 'fig-six', figure=fig6)
-    ])
+    # dcc.Graph(id = 'boxplot',
+    #         figure=fig_viz6)
+    # ])
 
 
 @app.callback(
@@ -126,11 +127,9 @@ def update_graph(year, month):
     if (year == None) or (month == None):
         return dash.no_update
     else:
-        fig6 = viz_six.dumbbell_plot(oltc_data,year, month)
+        fig_viz6 = viz_six.dumbbell_plot(oltc_data,year, month)
 
-    return fig6
-# if __name__ == '__main__':
-#     app.run_server(debug=False)
+    return fig_viz6
     
 '''layout = html.Div([
             html.H1('Lifespan data',

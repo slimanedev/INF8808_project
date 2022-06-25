@@ -19,49 +19,40 @@ oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 #data=oltc_data.iloc[idx,:]
 data=preprocess.drop_irrelevant_time(oltc_data)
 
-# Plot for box chart
-fig1=box_graph.plot_box_chart(data)
-fig1.update_layout(height=600, width=1000)
-fig1.update_layout(dragmode=False)
-
 # Plot for Line_chart (not finished)
-#fig2 = line_graph.plot_line_chart(data)
+#fig_viz1 = line_graph.plot_line_chart(data)
 
-fig2= bar_chart_viz2.BarChart(data)
-fig2.update_layout(height=600, width=1000)
-fig2.update_layout(dragmode=False)
-layout = html.Div([
-            html.H3('Visualizations on the performance of Tap changer',
-                    style={'textAlign':'center'}),
-            dcc.Graph(id='boxplot',
-                    figure= fig1
-                ),
+# Plot bar chart for viz 2
+fig_viz2 = bar_chart_viz2.BarChart(data)
+fig_viz2.update_layout(height=600, width=1000)
+fig_viz2.update_layout(dragmode=False)
 
-            dcc.Graph(id='boxplot',
-                    figure= fig2
-                )
-        ]
-)
+# Plot for box chart for viz 4
+fig_viz4=box_graph.plot_box_chart(data)
+fig_viz4.update_layout(height=600, width=1000)
+fig_viz4.update_layout(dragmode=False)
 
 # Plot for histogram
-'''fig8_1=current_variation.get_monthly_current_plot(data)
+'''fig_viz8=current_variation.get_monthly_current_plot(data)
 
 layout = html.Div([
             html.H1(' Variation of circulating current amplitude over time',
                     style={'textAlign':'center'}),
             dcc.Graph(id='boxplot',
-                    figure= fig8_1
+                    figure= fig_viz8
                 )
         ]
 )'''
-# Plot bar chart tracking number of tap changes
-fig2_1= bar_chart_viz2.BarChart(data)
+
 layout = html.Div([
-            html.H1('Change of Tap',
+            html.H3('Visualizations on the performance of Tap changer',
                     style={'textAlign':'center'}),
             dcc.Graph(id='boxplot',
-                    figure= fig2_1
+                    figure= fig_viz4
+                ),
+
+            dcc.Graph(id='boxplot',
+                    figure= fig_viz2
                 )
         ]
 )
-
