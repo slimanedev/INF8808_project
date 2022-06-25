@@ -19,7 +19,7 @@ def dumbbell_plot(dataframe,input_year, input_month):
 
     #plot the dumbbell plot
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=dff["Time"], y=dff["tapTime_PowLoss"], mode = 'markers', name='Tap PowLoss Time'))
+    fig.add_trace(go.Scatter(x=dff["Time"], y=dff["tapTime_PowLoss"], mode = 'markers', name='Tap Power Loss Time'))
     fig.add_trace(go.Scatter(x=dff["Time"], y=dff["tapOperationTime"], mode = 'markers', name="Tap Operation Time"))
     
     #updating the layout to set title, hover mode,...
