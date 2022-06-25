@@ -47,14 +47,14 @@ def create_custom_theme():
     # TODO : Generate template described above
     pio.templates['custom'] = dict(
         layout=go.Layout(
-            title_font=dict(family = THEME['font_family'], color= THEME['dark_color']),
-            font=dict(family = THEME['font_family'], color= THEME['dark_color']),
-            plot_bgcolor = THEME['plot_background_color'],          #color of the background plot 
-            hoverlabel=                                   
-            dict(font=
-                 dict(
-                     family=THEME['font_family'],size=THEME['label_font_size'],
-                     color=THEME['dark_color']),bgcolor = THEME['label_background_color'])))
+        title_font=dict(family = THEME['font_family'], color= THEME['dark_color']),
+        font=dict(family = THEME['font_family'], color= THEME['dark_color']),
+        plot_bgcolor = THEME['plot_background_color'], 
+        hoverlabel=dict(font=
+                        dict(family=THEME['font_family'],
+                             size=THEME['label_font_size'],
+                             color=THEME['dark_color']),
+                             bgcolor = THEME['label_background_color'])))
 
 def set_default_theme():
     '''
