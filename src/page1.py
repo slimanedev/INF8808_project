@@ -13,6 +13,9 @@ DATA_PATH = PATH.joinpath("data").resolve()
 
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
+#Preprocess the data
+oltc_data = preprocess.convert_dates(oltc_data)
+oltc_data = preprocess.drop_irrelevant_time(oltc_data)
 
 # Initiate the app 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -20,11 +23,8 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Declare server for Heroku deployment
 server = app.server
 
-idx=oltc_data[(oltc_data['Time'].str.contains('AM|PM'))].index
-data=oltc_data.iloc[idx,:]
-
-wd_data = preprocess.get_traf_wd_data(data)
-we_data= preprocess.get_traf_we_data(data)
+wd_data = preprocess.get_traf_wd_data(oltc_data)
+we_data= preprocess.get_traf_we_data(oltc_data)
 
 fig1=Load_current.get_transformer_avg_current_plot(wd_data,we_data, 2015)
 fig1.update_layout(height=600, width=1000)
@@ -63,49 +63,41 @@ layout =html.Div(children=[
     Output('bargraph', 'figure')],
     [Input('year', 'value')])
 def update_graph(year):
-     wd_data = preprocess.get_traf_wd_data(data)
-     we_data= preprocess.get_traf_we_data(data)
+     wd_data = preprocess.get_traf_wd_data(oltc_data)
+     we_data= preprocess.get_traf_we_data(oltc_data)
      fig1=Load_current.get_transformer_avg_current_plot(wd_data,we_data, year)
      fig2=Load_current.get_transformer_max_current_plot(wd_data,we_data, year)
      return fig1,fig2  
 
     
-fig_viz6 = viz_six.dumbbell_plot(oltc_data,2015, 5)
-oltc_data['Date'] = pd.to_datetime(oltc_data['Date'])
+
+        
+fig6 = viz_six.dumbbell_plot(oltc_data,2015, 5)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
-#  layout = html.Div([
-    # html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
-    # html.Div([
-    #     html.Div([
-    #         html.Label('Select the year:'),
-    #         dcc.Dropdown(
-    #              id = 'years',
-    #              options = [{
-    #                      'label' : i, 
-    #                      'value' : i
-    #              } for i in years],
-    #             value = '2015',
-    #             clearable = True
-
-    #              ),
-    #             ], style=dict(width='50%')),
-
-    #     html.Div([
-
-    #         html.Label('Select the month:'),
-    #         dcc.Dropdown(
-    #          id = 'months',
-    #          options = [],
-    #          value = '5', 
-    #          clearable = True)
-    #          ,
-    #     ], style=dict(width='50%')),
-    #         ], style=dict(display='flex')),
-
-    # dcc.Graph(id = 'boxplot',
-    #         figure=fig_viz6)
-    # ])
+#layout = html.Div(children=[
+#    html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
+#    html.Div([
+#        html.Div([
+#            html.Label('Select the year:'),
+#            dcc.Dropdown(
+#                 id = 'years',
+#                 options = [{
+#                         'label' : i, 
+#                         'value' : i
+#                 } for i in years],
+#                value = '2015',
+#                clearable = True),], style=dict(width='50%')),
+#        html.Div([
+#            html.Label('Select the month:'),
+#            dcc.Dropdown(
+#            id = 'months',
+#            options = [],
+#            value = '5',
+#            clearable = True)], 
+#            style=dict(width='50%'))], style=dict(display='flex')),
+#    dcc.Graph(id = 'fig-six', figure=fig6),
+#])
 
 
 @app.callback(
@@ -126,9 +118,9 @@ def update_graph(year, month):
     if (year == None) or (month == None):
         return dash.no_update
     else:
-        fig_viz6 = viz_six.dumbbell_plot(oltc_data,year, month)
+        fig6 = viz_six.dumbbell_plot(oltc_data,year, month)
 
-    return fig_viz6
+    return fig6        
     
 '''layout = html.Div([
             html.H1('Lifespan data',
