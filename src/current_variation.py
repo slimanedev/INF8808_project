@@ -1,5 +1,4 @@
 import pandas as pd
-import proccess
 import plotly.graph_objects as go
 
 def get_monthly_current_plot(df):

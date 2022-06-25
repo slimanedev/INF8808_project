@@ -7,7 +7,6 @@ from dash import dcc
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
-import preprocess
 #Use the preprocess to manage the data. You can add fucntions if it's necessary
 
 PATH = pathlib.Path(__file__).parent
@@ -45,7 +44,7 @@ layout = html.Div([
 )
 
 # Plot for histogram
-fig8_1=current_variation.plot_current_variation(data)
+'''fig8_1=current_variation.get_monthly_current_plot(data)
 
 layout = html.Div([
             html.H1(' Variation of circulating current amplitude over time',
@@ -54,9 +53,9 @@ layout = html.Div([
                     figure= fig8_1
                 )
         ]
-)
+)'''
 # Plot bar chart tracking number of tap changes
-'''fig2_1= bar_chart_viz2.BarChart(data)
+fig2_1= bar_chart_viz2.BarChart(data)
 layout = html.Div([
             html.H1('Change of Tap',
                     style={'textAlign':'center'}),
@@ -65,4 +64,4 @@ layout = html.Div([
                 )
         ]
 )
-'''
+
