@@ -44,15 +44,19 @@ layout = html.Div([
         ]
 )'''
 
-layout = html.Div([
-            html.H3('Visualizations on the performance of Tap changer',
-                    style={'textAlign':'center'}),
-            dcc.Graph(id='boxplot',
-                    figure= fig_viz4
-                ),
-
-            dcc.Graph(id='boxplot',
+layout = html.Div(children=[
+            html.Div([
+                # html.H3('Visualizations on the performance of Tap changer',
+                # style={'textAlign':'center'}),
+                dcc.Graph(id='bargraph',
                     figure= fig_viz2
                 )
-        ]
-)
+            ]
+        ),
+        html.Div([
+                dcc.Graph(id='boxplot',
+                        figure=fig_viz4
+                )
+            ]
+        )
+])
