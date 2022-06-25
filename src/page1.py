@@ -37,14 +37,13 @@ fig2.update_layout(dragmode=False)
 
 layout =html.Div(children=[
         html.Div([
-            html.H3('Transformer load current for different years'),
-            
-            html.H6('Select the year from the dropdown below:'),
-            dcc.Dropdown(
-                [2015,2016,2017,2018,2019,2020],
-                2015,
-                id='year'
-            ),
+            # html.H3('Transformer load current for different years'),
+            # html.H6('Select the year from the dropdown below:'),
+            # dcc.Dropdown(
+            #     [2015,2016,2017,2018,2019,2020],
+            #     2015,
+            #     id='year'
+            # ),
             dcc.Graph(id='linegraph',
                       figure=fig1
                 )
