@@ -1,10 +1,11 @@
 import pandas as pd
 import plotly.graph_objects as go
+import preprocess
 
 def get_monthly_current_plot(df):
-
+    df=preprocess.get_monthly_average_current(df)
     year_list = df['year'].unique().tolist()
-
+    
     month = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
             'August', 'September', 'October', 'November', 'December']
 

@@ -32,8 +32,9 @@ fig_viz4=viz4_box_chart.plot_box_chart(data)
 fig_viz4.update_layout(height=600, width=1000)
 fig_viz4.update_layout(dragmode=False)
 
-# Plot for histogram
-'''fig_viz8=viz8_bar_chart.get_monthly_current_plot(data)
+# Plot for Barchart
+
+fig_viz8=viz8_bar_chart.get_monthly_current_plot(data)
 
 layout = html.Div([
             html.H1(' Variation of circulating current amplitude over time',
@@ -42,7 +43,7 @@ layout = html.Div([
                     figure= fig_viz8
                 )
         ]
-)'''
+)
 
 layout = html.Div(children=[
             html.Div([
