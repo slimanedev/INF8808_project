@@ -5,12 +5,11 @@ import collections
 
 def BarChart(df):
         tapAfter=df['tapAfter'].tolist()
-        tapBefore=df['tapBefore'].tolist()
         counter=collections.Counter(tapAfter)
         Number=counter.values()
-        df2=pd.DataFrame(counter.items() ,columns=['Numbert Of Tap', 'Number of Change'])
+        df2=pd.DataFrame(counter.items() ,columns=['Tap position', 'Number of Change'])
 
-        fig = px.bar(df2,x='Number of Change',y='Numbert Of Tap', orientation='h') 
+        fig = px.bar(df2,x='Number of Change',y='Tap position', orientation='h') 
 
         fig.update_layout(
         title="The number of tap changes of each tap position")

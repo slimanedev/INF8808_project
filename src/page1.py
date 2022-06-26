@@ -6,7 +6,7 @@ from dash import Dash, dcc, html, Input, Output
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
-import preprocess, Load_current, viz_six
+import preprocess,  viz6_scatter_chart, viz9_line_chart
 
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
@@ -26,11 +26,11 @@ server = app.server
 wd_data = preprocess.get_traf_wd_data(oltc_data)
 we_data= preprocess.get_traf_we_data(oltc_data)
 
-fig1=Load_current.get_transformer_avg_current_plot(wd_data,we_data, 2015)
+fig1=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, 2015)
 fig1.update_layout(height=600, width=1000)
 fig1.update_layout(dragmode=False)
 
-fig2=Load_current.get_transformer_max_current_plot(wd_data,we_data, 2015)
+fig2=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, 2015)
 fig2.update_layout(height=600, width=1000)
 fig2.update_layout(dragmode=False)
 
@@ -65,14 +65,14 @@ layout =html.Div(children=[
 def update_graph(year):
      wd_data = preprocess.get_traf_wd_data(oltc_data)
      we_data= preprocess.get_traf_we_data(oltc_data)
-     fig1=Load_current.get_transformer_avg_current_plot(wd_data,we_data, year)
-     fig2=Load_current.get_transformer_max_current_plot(wd_data,we_data, year)
+     fig1=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, year)
+     fig2=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, year)
      return fig1,fig2  
 
     
 
         
-fig6 = viz_six.dumbbell_plot(oltc_data,2015, 5)
+fig6 = viz6_scatter_chart.dumbbell_plot(oltc_data,2015, 5)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 #layout = html.Div(children=[
@@ -118,7 +118,7 @@ def update_graph(year, month):
     if (year == None) or (month == None):
         return dash.no_update
     else:
-        fig6 = viz_six.dumbbell_plot(oltc_data,year, month)
+        fig6 = viz6_scatter_chart.dumbbell_plot(oltc_data,year, month)
 
     return fig6        
     

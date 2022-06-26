@@ -1,5 +1,5 @@
 import pathlib, dash
-import preprocess, box_graph, line_graph, current_variation, bar_chart_viz2
+import preprocess, viz1_line_chart, viz2_bar_chart, viz4_box_chart, viz8_bar_chart 
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 #import dash_core_components as dcc
@@ -20,20 +20,20 @@ oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 data=preprocess.drop_irrelevant_time(oltc_data)
 
 # Plot for Line_chart (not finished)
-#fig_viz1 = line_graph.plot_line_chart(data)
+#fig_viz1 = viz1_line_chart.plot_line_chart(data)
 
 # Plot bar chart for viz 2
-fig_viz2 = bar_chart_viz2.BarChart(data)
+fig_viz2 = viz2_bar_chart.BarChart(data)
 fig_viz2.update_layout(height=600, width=1000)
 fig_viz2.update_layout(dragmode=False)
 
 # Plot for box chart for viz 4
-fig_viz4=box_graph.plot_box_chart(data)
+fig_viz4=viz4_box_chart.plot_box_chart(data)
 fig_viz4.update_layout(height=600, width=1000)
 fig_viz4.update_layout(dragmode=False)
 
 # Plot for histogram
-'''fig_viz8=current_variation.get_monthly_current_plot(data)
+'''fig_viz8=viz8_bar_chart.get_monthly_current_plot(data)
 
 layout = html.Div([
             html.H1(' Variation of circulating current amplitude over time',
