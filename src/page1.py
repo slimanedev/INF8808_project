@@ -6,7 +6,7 @@ from dash import Dash, dcc, html, Input, Output
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
-import preprocess,  viz6_scatter_chart, viz9_line_chart
+import preprocess,  viz6_dumbbell_chart, viz9_line_chart
 
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
@@ -72,7 +72,7 @@ def update_graph(year):
     
 
         
-fig6 = viz6_scatter_chart.dumbbell_plot(oltc_data,2015, 5)
+fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 #layout = html.Div(children=[
@@ -118,7 +118,7 @@ def update_graph(year, month):
     if (year == None) or (month == None):
         return dash.no_update
     else:
-        fig6 = viz6_scatter_chart.dumbbell_plot(oltc_data,year, month)
+        fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,year, month)
 
     return fig6        
     
