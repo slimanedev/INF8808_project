@@ -83,3 +83,7 @@ def get_hover_template_viz8_barchart():
 def get_hover_template_viz8_linechart():
     hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
     return hovertemplate
+
+def get_hover_template_viz2():
+    hovertemplate= '<b>%{y}</b><br><br><b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
+    return hovertemplate
