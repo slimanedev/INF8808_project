@@ -33,8 +33,8 @@ fig_viz4.update_layout(height=600, width=1000)
 fig_viz4.update_layout(dragmode=False)
 
 # Plot for Barchart
-data2=preprocess.get_monthly_average_current(data)
-fig_viz8=viz8_bar_chart.get_monthly_current_plot(data2)
+
+fig_viz8=viz8_bar_chart.get_monthly_current_plot(data)
 
 layout = html.Div([
             html.H1(' Variation of circulating current amplitude over time',
