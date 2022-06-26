@@ -76,11 +76,11 @@ def set_default_theme():
 
 
 
-def get_hover_template_viz8_barchart():
+def get_hover_template_viz9_barchart():
     hovertemplate= '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
     return hovertemplate
 
-def get_hover_template_viz8_linechart():
+def get_hover_template_viz9_linechart():
     hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
     return hovertemplate
 

@@ -38,30 +38,36 @@ fig2.update_layout(dragmode=False)
 layout =html.Div(children=[
         html.Div([
              html.H3('Transformer load current for different years'),
-             html.H6('Select the year from the dropdown below:'),
-             dcc.Dropdown(
-                [2015,2016,2017,2018,2019,2020],
-                2015,
-                id='year'
-             ),
+             #html.H6('Select the year from the dropdown below:'),
+            #dcc.Dropdown(
+               # [2015,2016,2017,2018,2019,2020],
+               # 2015,
+               # id='year'
+            # ),
             dcc.Graph(id='linegraph',
                       figure=fig1
-                )
+                ),
+            dcc.Slider(
+                2015,
+                2020,
+                step=None,
+                id='year--slider',
+                value=2020,
+                marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},
+
+    ),
+            dcc.Graph(id='bargraph',
+                      figure=fig2),
+            
+            
             ]
         ),
-        html.Div([
-                #html.H3('Transformer Maximum Load current over hours of the day'),
-                dcc.Graph(id='bargraph',
-                      figure=fig2
-                )
-            ]
-        )
 ])
 
 @app.callback([
     Output('linegraph', 'figure'),
     Output('bargraph', 'figure')],
-    [Input('year', 'value')])
+    [Input('year--slider', 'value')])
 def update_graph(year):
      wd_data = preprocess.get_traf_wd_data(oltc_data)
      we_data= preprocess.get_traf_we_data(oltc_data)

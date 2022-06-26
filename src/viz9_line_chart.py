@@ -21,7 +21,7 @@ def get_transformer_avg_current_plot (data1,data2, year):
                         name='Weekdays',
                         marker_color='green',
                         line_shape='spline',
-                        hovertemplate=template.get_hover_template_viz8_linechart()
+                        hovertemplate=template.get_hover_template_viz9_linechart()
                         ))
     
     fig = fig.add_trace(go.Scatter(x=df2.Time, y=df2.TrafoLoadCurr,
@@ -29,7 +29,7 @@ def get_transformer_avg_current_plot (data1,data2, year):
                         name='Weekends',
                         marker_color='blue',
                         line_shape='spline',
-                        hovertemplate=template.get_hover_template_viz8_linechart()
+                        hovertemplate=template.get_hover_template_viz9_linechart()
                         ))
 
 
@@ -54,13 +54,13 @@ def get_transformer_max_current_plot (data1,data2, year):
     fig = fig.add_trace(go.Bar(x=df1.Time, y=df1.TrafoLoadCurr,
                         name='Weekdays',
                         marker_color='green',
-                        hovertemplate = template.get_hover_template_viz8_barchart(),
+                        hovertemplate = template.get_hover_template_viz9_barchart(),
                         ))
     
     fig = fig.add_trace(go.Bar(x=df2.Time, y=df2.TrafoLoadCurr,
                         name='Weekends',
                         marker_color= "blue",
-                        hovertemplate = template.get_hover_template_viz8_barchart()
+                        hovertemplate = template.get_hover_template_viz9_barchart()
                        ))
 
 
