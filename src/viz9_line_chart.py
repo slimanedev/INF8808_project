@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import datetime as datetime
 import plotly.graph_objects as go
-
+import template
 
 def get_transformer_avg_current_plot (data1,data2, year):   
     
@@ -11,8 +11,8 @@ def get_transformer_avg_current_plot (data1,data2, year):
     
     df1=data1[idx1] ; df2=data2[idx2]
 
-    df1=df1.groupby('Time', as_index=False).mean()
-    df2=df2.groupby('Time', as_index=False).mean()
+    df1=df1.groupby('Time', as_index=False).mean().round(3)
+    df2=df2.groupby('Time', as_index=False).mean().round(3)
 
     fig=go.Figure()
 
@@ -20,20 +20,23 @@ def get_transformer_avg_current_plot (data1,data2, year):
                         mode='lines',
                         name='Weekdays',
                         marker_color='green',
-                        line_shape='spline'))
+                        line_shape='spline',
+                        hovertemplate=template.get_hover_template_viz8_linechart()
+                        ))
     
     fig = fig.add_trace(go.Scatter(x=df2.Time, y=df2.TrafoLoadCurr,
                         mode='lines',
                         name='Weekends',
                         marker_color='blue',
-                        line_shape='spline'))
+                        line_shape='spline',
+                        hovertemplate=template.get_hover_template_viz8_linechart()
+                        ))
 
 
     fig.update_layout(title= f'Average Load current on Transformer during hours of the day in year {year}',
-                    xaxis_title='hours of the day',
-                    yaxis_title= 'Load current (KA)',
-                    #height=500, width=800)
-    )
+                    xaxis_title='hour of the day',
+                    yaxis_title='Load current (KA)',
+                     )
     return fig
 
 def get_transformer_max_current_plot (data1,data2, year):   
@@ -43,25 +46,27 @@ def get_transformer_max_current_plot (data1,data2, year):
     
     df1=data1[idx1] ; df2=data2[idx2]
 
-    df1=df1.groupby('Time', as_index=False).max()
-    df2=df2.groupby('Time', as_index=False).max()
+    df1=df1.groupby('Time', as_index=False).max().round(3)
+    df2=df2.groupby('Time', as_index=False).max().round(3)
 
     fig=go.Figure()
 
     fig = fig.add_trace(go.Bar(x=df1.Time, y=df1.TrafoLoadCurr,
                         name='Weekdays',
-                        marker_color='green' #'rgb(26, 118, 255)',
+                        marker_color='green',
+                        hovertemplate = template.get_hover_template_viz8_barchart(),
                         ))
     
     fig = fig.add_trace(go.Bar(x=df2.Time, y=df2.TrafoLoadCurr,
                         name='Weekends',
-                        marker_color= "blue" #'rgb(55, 83, 109)',
+                        marker_color= "blue",
+                        hovertemplate = template.get_hover_template_viz8_barchart()
                        ))
 
 
     fig.update_layout(title= f'Maximum Load current on Transformer during hours of the day in year {year}',
-                    xaxis_title='hours of the day',
-                    yaxis_title= 'Load current (KA)',
-                    height=500, width=1000)
+                    xaxis_title='hour of the day',
+                    yaxis_title='Load current (KA)',
+                     )
 
     return fig

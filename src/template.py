@@ -73,3 +73,13 @@ def set_default_theme():
     #setting the tempalte
     pio.templates.default = 'plotly_white+custom'
     fig.update_layout(template = pio.templates.default)
+
+
+
+def get_hover_template_viz8_barchart():
+    hovertemplate= '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
+    return hovertemplate
+
+def get_hover_template_viz8_linechart():
+    hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
+    return hovertemplate
