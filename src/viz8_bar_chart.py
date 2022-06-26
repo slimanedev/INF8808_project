@@ -19,5 +19,7 @@ def get_monthly_current_plot(df):
     fig.update_xaxes(categoryorder='array', categoryarray= month)
     fig.update_yaxes(title='Average tap circulating current (KA)')
     fig.update_layout(title="Average tap circulating current over months of the years")
+    fig.update_traces(hovertemplate =template.get_hover_template_viz8())
+
 
     return fig
