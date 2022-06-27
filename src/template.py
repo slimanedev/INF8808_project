@@ -89,5 +89,5 @@ def get_hover_template_viz2():
     return hovertemplate
 
 def get_hover_template_viz8():
-  hovertemplate= '<b>Month: %{x} <br><b>Circulatiing current: %{y}(KA) <extra></extra>'
+  hovertemplate= '<b> Year: %{text}<br><b>Month: %{x} <br><b> Circulatiing current: %{y}(kA) <extra></extra>'
   return hovertemplate
