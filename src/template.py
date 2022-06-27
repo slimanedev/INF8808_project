@@ -74,14 +74,10 @@ def set_default_theme():
     pio.templates.default = 'plotly_white+custom'
     fig.update_layout(template = pio.templates.default)
 
+# Define chart templates when needed
 
-
-def get_hover_template_viz9_barchart():
-    hovertemplate= '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
-    return hovertemplate
-
-def get_hover_template_viz9_linechart():
-    hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
+def get_hover_template_viz1():
+    hovertemplate= '<b>Day: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
     return hovertemplate
 
 def get_hover_template_viz2():
@@ -91,3 +87,15 @@ def get_hover_template_viz2():
 def get_hover_template_viz8():
   hovertemplate= '<b> Year: %{text}<br><b>Month: %{x} <br><b>Circulatiing current: %{y}(kA) <extra></extra>'
   return hovertemplate
+
+def get_hover_template_viz9_barchart():
+    hovertemplate= '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
+    return hovertemplate
+
+def get_hover_template_viz9_linechart():
+    hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
+    return hovertemplate
+
+
+
+
