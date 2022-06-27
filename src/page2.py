@@ -1,13 +1,11 @@
 import pathlib, dash
-import preprocess, viz1_line_chart, viz2_bar_chart, viz4_box_chart, viz8_bar_chart 
+import preprocess, viz1_line_chart, viz2_bar_chart, viz4_box_chart, viz7_area_chart
 import dash_html_components as html
 import dash_bootstrap_components as dbc
-#import dash_core_components as dcc
 from dash import dcc
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
-#Use the preprocess to manage the data. You can add fucntions if it's necessary
 
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
@@ -15,49 +13,52 @@ DATA_PATH = PATH.joinpath("data").resolve()
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
-#idx=oltc_data[(oltc_data['Time'].str.contains('AM|PM'))].index
-#data=oltc_data.iloc[idx,:]
-data=preprocess.drop_irrelevant_time(oltc_data)
 
-# Plot for Line_chart (not finished)
-#fig_viz1 = viz1_line_chart.plot_line_chart(data)
+
+# Plot bar chart - Viz 1
+data=preprocess.drop_irrelevant_time(oltc_data)
+fig_viz1 = viz1_line_chart.plot_line_chart(data)
 
 # Plot bar chart for viz 2
 fig_viz2 = viz2_bar_chart.BarChart(data)
 fig_viz2.update_layout(height=600, width=1000)
 fig_viz2.update_layout(dragmode=False)
 
-# Plot for box chart for viz 4
+# Plot for box chart - Viz 3
+#fig_viz3=viz3_bar_chart.plot_box_chart(data)
+
+# Plot for box chart - Viz 4
 fig_viz4=viz4_box_chart.plot_box_chart(data)
 fig_viz4.update_layout(height=600, width=1000)
 fig_viz4.update_layout(dragmode=False)
 
-# Plot for Barchart
+# Plot for area chart - Viz 7
+df=preprocess.adjust_data_for_viz7(oltc_data)
+fig_viz7=viz7_area_chart.area_plot_Energy_Loss(df)
 
-fig_viz8=viz8_bar_chart.get_monthly_current_plot(data)
 
-
-
-layout = html.Div(children=[
-            html.Div([
-                # html.H3('Visualizations on the performance of Tap changer',
-                # style={'textAlign':'center'}),
-                dcc.Graph(id='bargraph',
-                    figure= fig_viz2
-                )
-            ]
-        ),
+# The page 2 layout
+layout =html.Div(children=[
         html.Div([
-                dcc.Graph(id='boxplot',
-                        figure=fig_viz4
-                )
-            ]
-        ),
-        html.Div([            
-            dcc.Graph(id='boxplot',
-                    figure= fig_viz8
-                )
-        ]
-)
+            #Display the visualization 1
+            #html.H3('Transformer load current for different years'),
+            dcc.Graph(figure=fig_viz1),
+            
+            #Display the visualization 2
+            #html.H6('Select the year from on the slider below:'),
+            dcc.Graph(figure=fig_viz2),
+            
+            #Display the visualization 3
+            #html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
+            #dcc.Graph(figure=fig_viz3),
 
-])
+            #Display the visualization 4
+            #html.H3('Variation of average tap circulating current over time'),
+            dcc.Graph(figure=fig_viz4),
+
+            #Display the visualization 7
+            #html.H3('Variation of average tap circulating current over time'),
+            dcc.Graph(figure=fig_viz7),
+            
+        ]),
+],style={'padding': 10, 'flex': 1})
