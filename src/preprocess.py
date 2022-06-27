@@ -3,6 +3,7 @@
 '''
 import pandas as pd
 import datetime as datetime
+import numpy as np
 
 """with open('./OLTCresults.csv', encoding='utf-8') as data_file:
     oltc_data = pd.read_csv(data_file)"""
@@ -79,3 +80,14 @@ def get_monthly_average_current (df):
     return df2
 
 
+def adjust_data_for_viz7(oltc_data):
+    oltc_data = drop_irrelevant_time(oltc_data)
+    oltc_data['Date'] = pd.to_datetime(oltc_data['Date'])
+
+    oltc_data.sort_values(by='Date')
+
+    df=oltc_data.groupby(pd.PeriodIndex(oltc_data['Date'], freq='M')).agg({'tapPowerLossAmp': (np.mean),
+                                                                           'Date':'first','tapEnergyLoss': (np.mean)})
+    df['year'] = pd.DatetimeIndex(df['Date']).year
+    df.head()
+    return df
