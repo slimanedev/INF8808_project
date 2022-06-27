@@ -50,7 +50,7 @@ layout =html.Div(children=[
                         2015,
                         2020,
                         step=None,
-                        id='year--slider',
+                        id='sliderYear',
                         value=2020,
                         marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             dcc.Graph(id='bargraph',figure=fig2),
@@ -58,26 +58,25 @@ layout =html.Div(children=[
         ),
 ])
 
-"""@app.callback([
-    Output('linegraph', 'figure'),
-    Output('bargraph', 'figure')],
-    [Input('year--slider', 'value')],
-    [State('linegraph', 'figure'),
-    State('bargraph', 'figure')])"""
-
 @dash.callback(
     Output('linegraph', 'figure'),
     [Input('dropdownYear', 'value')])
 
 def update_graph(value):
-    print(value)
     wd_data = preprocess.get_traf_wd_data(oltc_data)
     we_data= preprocess.get_traf_we_data(oltc_data)
     fig1=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
-    #fig2=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, year)
     return fig1  
 
-    
+@dash.callback(
+    Output('bargraph', 'figure'),
+    [Input('sliderYear', 'value')])
+
+def update_graph(value):
+    wd_data = preprocess.get_traf_wd_data(oltc_data)
+    we_data= preprocess.get_traf_we_data(oltc_data)
+    fig2=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, value)
+    return fig2    
 
 """    
 fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
