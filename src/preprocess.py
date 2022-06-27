@@ -89,11 +89,9 @@ def adjust_data_for_viz7(oltc_data):
     return df
 
 
-def  adjust_data_for_viz3(oltc_data,tap):
-    '''
-    we can set tap = 'tapAfter' or 'tapBefor'
+def  adjust_data_for_viz3(oltc_data):
     
-    '''
+    tap = 'tapAfter'
     # Chnage the Time format
     oltc_data['Time']= oltc_data['Time'].apply(lambda x:dt.datetime.strptime(x, "%I:%M:%S %p").hour)
 
@@ -114,16 +112,8 @@ def  adjust_data_for_viz3(oltc_data,tap):
         ind0 = ind
 
     y = np.array(output_tap)
-    if tap=='tapAfter':
-        data = {'Time_in_Hours': y[:,0],
-                'tapAfter' : y[:,1],
-                'Max_loadCurr': y[:,2],
-                'Max_PowerLoss': y[:,3],
-                'Max_EnergyLoss': y[:,4],
-                'Max_CircCurr': y[:,5]}
-    else:
-        data = {'Time_in_Hours': y[:,0],
-                'tapBefore' : y[:,1],
+    data = {'Time_in_Hours': y[:,0],
+                'Tap Value' : y[:,1],
                 'Max_loadCurr': y[:,2],
                 'Max_PowerLoss': y[:,3],
                 'Max_EnergyLoss': y[:,4],
@@ -136,3 +126,4 @@ def  adjust_data_for_viz3(oltc_data,tap):
     df1['Time_in_Hours'] = [dt.time(hour=x).strftime("%H:%M") for x in lst]
     
     return df1
+
