@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
 
+import tap_history_dashboard, preprocess
 # Define Path to get the datas
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
@@ -18,6 +19,10 @@ total_power_loss=round(sum(oltc_data['tapPowerLossAmp']),2)
 total_circulating_current=round(sum(oltc_data['tapCircCurrAmp']),2)
 total_energy_loss=round(sum(oltc_data['tapEnergyLoss']),2)
 total_tap_change_time=round(sum(oltc_data['tapOperationTime']),2)
+
+# Preprocess the data
+oltc_data = preprocess.convert_dates(oltc_data)
+oltc_data = preprocess.drop_irrelevant_time(oltc_data)
 
 #Get the main figure
 fig=go.Figure(go.Bar(x=oltc_data['tapBefore'], y=oltc_data['tapPowerLossAmp']))
@@ -57,3 +62,32 @@ layout = html.Div(className='content', children=[
                         ], style={'padding': 10, 'flex': 1})
         ],style={'display': 'flex', 'flex-direction': 'row'})
 ])
+
+
+
+# Get tap recent history plot
+fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 0)
+
+layout =html.Div(children=[html.Div([html.H3('Recent history of tap used', 
+                                                          style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
+                                                  dcc.Graph(id='tap-frequency',figure=fig1),
+                                                  html.H5('Use slider below to change the duration', 
+                                                          style={'color': '#68228B', 'fontSize': 16}),
+                                                  dcc.Slider(
+                                                      0,
+                                                      3,
+                                                      step=None,
+                                                      id='slider-duration',
+                                                      value=0,
+                                                      marks={
+                                                          0: {'label': 'Past Week'},
+                                                          1: {'label': 'Past Two Weeks'},
+                                                          2: {'label': 'Past Three Weeks'},
+                                                          3: {'label': 'Past Month'}},)],)])
+
+@dash.callback(
+    Output('tap-frequency', 'figure'),
+    [Input('slider-duration', 'value')])
+def update_viz(value):
+    fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = value)
+    return fig1 
