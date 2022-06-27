@@ -57,7 +57,7 @@ layout =html.Div(children=[
 
             #Display the visualization 7
             #html.H3('Variation of average tap circulating current over time'),
-            dcc.Graph(figure=fig_viz7),
+            #dcc.Graph(figure=fig_viz7),
             
         ]),
 ],style={'padding': 10, 'flex': 1})
