@@ -87,3 +87,7 @@ def get_hover_template_viz9_linechart():
 def get_hover_template_viz2():
     hovertemplate= '<b>%{y}</b><br><br><b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
     return hovertemplate
+
+def get_hover_template_viz8():
+  hovertemplate= '<b> Year: %{text}<br><b>Month: %{x} <br><b> Circulatiing current: %{y}(kA) <extra></extra>'
+  return hovertemplate
