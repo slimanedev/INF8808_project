@@ -87,3 +87,52 @@ def adjust_data_for_viz7(oltc_data):
     df['year'] = pd.DatetimeIndex(df['Date']).year
     df.head()
     return df
+
+
+def  adjust_data_for_viz3(oltc_data,tap):
+    '''
+    we can set tap = 'tapAfter' or 'tapBefor'
+    
+    '''
+    # Chnage the Time format
+    oltc_data['Time']= oltc_data['Time'].apply(lambda x:dt.datetime.strptime(x, "%I:%M:%S %p").hour)
+
+    Time_sorted_data = oltc_data.sort_values('Time')
+    h = Time_sorted_data['Time']
+
+    ### Select the suitable data and create new dataframe ####
+    output_tap = []
+    ind0 = 0
+    for i in range(24):
+        for j in range(np.min(Time_sorted_data[tap]),np.max(Time_sorted_data[tap]+1)):
+            ind = np.where(h==i)[0][-1]
+            ind1 = np.where(Time_sorted_data[tap][ind0:ind]==j)
+            output_tap.append([i,j,np.max(Time_sorted_data['TrafoLoadCurr'][ind1[0]]),
+                                 np.max(Time_sorted_data['tapPowerLossAmp'][ind1[0]]),
+                                 np.max(Time_sorted_data['tapEnergyLoss'][ind1[0]]),
+                                 np.max(Time_sorted_data['tapCircCurrAmp'][ind1[0]])])
+        ind0 = ind
+
+    y = np.array(output_tap)
+    if tap=='tapAfter':
+        data = {'Time_in_Hours': y[:,0],
+                'tapAfter' : y[:,1],
+                'Max_loadCurr': y[:,2],
+                'Max_PowerLoss': y[:,3],
+                'Max_EnergyLoss': y[:,4],
+                'Max_CircCurr': y[:,5]}
+    else:
+        data = {'Time_in_Hours': y[:,0],
+                'tapBefore' : y[:,1],
+                'Max_loadCurr': y[:,2],
+                'Max_PowerLoss': y[:,3],
+                'Max_EnergyLoss': y[:,4],
+                'Max_CircCurr': y[:,5]}
+    
+    df1 = pd.DataFrame(data)
+
+    ### Create the exact time #########
+    lst = list(np.int32(df1['Time_in_Hours']))
+    df1['Time_in_Hours'] = [dt.time(hour=x).strftime("%H:%M") for x in lst]
+    
+    return df1
