@@ -5,7 +5,7 @@ from dash import Dash, dcc, html, Input, Output
 from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
-import preprocess,  viz6_dumbbell_chart, viz9_line_chart
+import preprocess,  viz6_dumbbell_chart, viz9_line_chart, viz8_bar_chart
 
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
@@ -38,6 +38,9 @@ fig92.update_layout(dragmode=False)
 # Get the figure for Viz 6
 fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
+
+# Get the figure for Viz 8
+fig8=viz8_bar_chart.get_monthly_current_plot(oltc_data)
 
 
 # The page 1 layout
@@ -79,6 +82,10 @@ layout =html.Div(children=[
                         value = '5',
                         clearable = True),
             dcc.Graph(id = 'fig-six', figure=fig6),
+
+            #Display the visualization 8
+            html.H3('Variation of average tap circulating current over time'),
+            dcc.Graph(figure=fig8),
             
         ]),
 ],style={'padding': 10, 'flex': 1})
@@ -109,7 +116,7 @@ def update_viz92(value):
 #Callbacks for Viz 6
 @dash.callback(
     Output('months', 'options'),
-    Input('years', 'value')
+    [Input('years', 'value')]
 )
 def set_month_options(year):
     d_year = oltc_data[(oltc_data['Date'].dt.strftime('%Y') == year)]
@@ -117,8 +124,8 @@ def set_month_options(year):
 
 @dash.callback(
     Output('fig-six', 'figure'),
-    Input('years', 'value'),
-    Input('months', 'value')
+    [Input('years', 'value'),
+    Input('months', 'value')]
 )
 def update_viz6(year, month):
     if (year == None) or (month == None):
