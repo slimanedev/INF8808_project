@@ -34,7 +34,8 @@ def bar_plot_animation_Max_PowerLoss(df1):
     return fig
 
 
-#df1 =  preprocess.adjust_data_for_viz3(oltc_data)
+#df  = preprocess.drop_irrelevant_time(oltc_data)
+#df1 =  preprocess.adjust_data_for_viz3(df)
 #fig = bar_plot_animation_Max_PowerLoss(df1)
 
 #fig.show()
