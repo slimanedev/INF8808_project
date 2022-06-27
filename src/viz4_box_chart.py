@@ -1,13 +1,11 @@
 import pandas as pd
-import preprocess
 import plotly.express as px
 
 def plot_box_chart(data):
     
     data['Date']=pd.to_datetime(data['Date'])
-    #idx=data['Date'].dt.year == year
-    #df=data[idx]
 
+    # Plot for the box chart
     fig = px.box(data, 
         x = 'tapBefore', 
         y = "tapOperationTime",
@@ -15,8 +13,11 @@ def plot_box_chart(data):
         #category_orders={'tapBefore': ["4", "5", "6", "7", "8", "9", "10", "11"]}
         labels={'tapBefore': 'Tap position'}
         )
+    
+    # Get average value 
     global_average=data['tapOperationTime'].mean().round(3)  #Average commutation time for all the tap positions
     
+    # Add mean time period to switch tap as an horizontal-dotted-black-line
     fig.add_hline(y=global_average, line_dash="dot",
               annotation_text="All-time average tap operation time", 
               annotation_position="top right",
@@ -24,8 +25,10 @@ def plot_box_chart(data):
               annotation_font_color="black"
              )
     
-    critical_value= 1/(50*2) # Critical value not to reach (half a cycle)
+    # Define critical value as time period of half a cycle (t_critical = 1/(2 * 50Hz))
+    critical_value= 1/(50*2) 
 
+    # Add critical time period as an horizontal-dashed-red-line 
     fig.add_hline(y= critical_value,
         line_dash= 'dash',
         line_color= 'red',
@@ -35,6 +38,7 @@ def plot_box_chart(data):
         annotation_font_color="black",
     )
     
+    # Update layout
     fig.update_layout(
         title="Box-plot for the tap operation time based on the tap position",
         xaxis_title= "Tap position",

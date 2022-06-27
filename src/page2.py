@@ -7,15 +7,14 @@ from dash.dependencies import Input, Output, State
 import plotly.express as px
 import pandas as pd
 
+# Define Path to get the datas
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
 
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
-
-
-# Plot bar chart - Viz 1
+# Plot line chart - Viz 1
 data=preprocess.drop_irrelevant_time(oltc_data)
 fig_viz1 = viz1_line_chart.plot_line_chart(data)
 

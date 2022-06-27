@@ -7,23 +7,18 @@ import plotly.express as px
 import pandas as pd
 import preprocess,  viz6_dumbbell_chart, viz9_line_chart, viz8_bar_chart
 
+# Define Path to get the datas
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
 
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
-#Preprocess the data
+# Preprocess the data
 oltc_data = preprocess.convert_dates(oltc_data)
 oltc_data = preprocess.drop_irrelevant_time(oltc_data)
 wd_data = preprocess.get_traf_wd_data(oltc_data)
 we_data= preprocess.get_traf_we_data(oltc_data)
-
-# Initiate the app 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Declare server for Heroku deployment
-server = app.server
 
 # Get the figures for Viz 9
 fig91=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, 2015)
@@ -34,14 +29,12 @@ fig92=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, 2015)
 fig92.update_layout(height=600, width=1000)
 fig92.update_layout(dragmode=False)
 
-
 # Get the figure for Viz 6
 fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 # Get the figure for Viz 8
 fig8=viz8_bar_chart.get_monthly_current_plot(oltc_data)
-
 
 # The page 1 layout
 layout =html.Div(children=[

@@ -5,10 +5,6 @@ import pandas as pd
 import datetime as datetime
 import numpy as np
 
-"""with open('./OLTCresults.csv', encoding='utf-8') as data_file:
-    oltc_data = pd.read_csv(data_file)"""
-
-
 def convert_dates(dataframe):
     '''
         Converts the dates in the dataframe to datetime objects.
