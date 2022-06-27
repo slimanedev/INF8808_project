@@ -40,22 +40,28 @@ fig8=viz8_bar_chart.get_monthly_current_plot(oltc_data)
 layout =html.Div(children=[
         html.Div([
             html.H3('Transformer load current for different years'),
-            html.H6('Select the year from the dropdown below:'),
-
-            #Display the visualization 9.1
-            dcc.Dropdown(id='dropdownYear',options=[2015,2016,2017,2018,2019,2020],value=2015),
-            dcc.Graph(id='linegraph',figure=fig91),
             
-            #Display the visualization 9.2
-            html.H6('Select the year from on the slider below:'),
+            #Display the visualization 9.1
+            dcc.Graph(id='linegraph',figure=fig91),
+            html.H6('Use slider below to change the year'),
             dcc.Slider(
                         2015,
                         2020,
                         step=None,
-                        id='sliderYear',
+                        id='sliderYear1',
                         value=2020,
                         marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
+            
+            #Display the visualization 9.2
             dcc.Graph(id='bargraph',figure=fig92),
+            html.H6('Use slider below to change the year'),
+            dcc.Slider(
+                        2015,
+                        2020,
+                        step=None,
+                        id='sliderYear2',
+                        value=2020,
+                        marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             
             #Display the visualization 6
             html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
@@ -87,17 +93,18 @@ layout =html.Div(children=[
 #Callbacks for Viz 9
 @dash.callback(
     Output('linegraph', 'figure'),
-    [Input('dropdownYear', 'value')])
+    [Input('sliderYear1', 'value')])
 
-def update_viz91(value):
+def update_viz91_viz92(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
     we_data= preprocess.get_traf_we_data(oltc_data)
     fig91=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
+    
     return fig91  
 
 @dash.callback(
     Output('bargraph', 'figure'),
-    [Input('sliderYear', 'value')])
+    [Input('sliderYear2', 'value')])
 
 def update_viz92(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
