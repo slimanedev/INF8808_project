@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.graph_objects as go
 import preprocess
+import template
 
 def get_monthly_current_plot(df):
     df=preprocess.get_monthly_average_current(df)
