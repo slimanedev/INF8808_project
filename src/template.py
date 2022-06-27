@@ -96,6 +96,13 @@ def get_hover_template_viz9_linechart():
     hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
     return hovertemplate
 
+def get_viz3_hover_template():
+    
+    return """<span style='font-weight:bold'><b>    Max_loadCurr</b></span><span style='font-weight:normal'> : %{customdata[0]} <br /></span>
+    <span style='font-weight:bold'><b>Max_PowerLoss</b></span><span style='font-weight:normal'> : %{customdata[1]} <br /></span>
+    <span style='font-weight:bold'><b>Max_EnergyLoss</b></span><span style='font-weight:normal'> : %{customdata[2]} <br /></span>
+    <span style='font-weight:bold'><b>Max_CircCurr</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
+
 
 
 
