@@ -3,13 +3,10 @@ import preprocess
 import plotly.express as px
 import template
 
-def bar_plot_animation_Max_PowerLoss(df1,tap):
-    '''
-    we can set tap = 'tapAfter' or 'tapBefore'
-    
-    '''
+def bar_plot_animation_Max_PowerLoss(df1):
+
     fig = px.bar(df1, x="Time_in_Hours", y="Max_PowerLoss", 
-                 animation_frame=tap, 
+                 animation_frame='Tap Value', 
                  custom_data=['Max_loadCurr','Max_PowerLoss','Max_EnergyLoss','Max_CircCurr'])
     
     fig.update_layout(
@@ -37,9 +34,7 @@ def bar_plot_animation_Max_PowerLoss(df1,tap):
     return fig
 
 
-
-#tap = 'tapBefore'
-#df1 =  adjust_data_for_viz3(oltc_data,tap)
-#fig = bar_plot_animation_Max_PowerLoss(df1,tap)
+#df1 =  preprocess.adjust_data_for_viz3(oltc_data)
+#fig = bar_plot_animation_Max_PowerLoss(df1)
 
 #fig.show()
