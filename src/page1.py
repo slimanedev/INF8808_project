@@ -25,14 +25,19 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Declare server for Heroku deployment
 server = app.server
 
-# Get the figures
-fig1=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, 2015)
-fig1.update_layout(height=600, width=1000)
-fig1.update_layout(dragmode=False)
+# Get the figures for Viz 9
+fig91=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, 2015)
+fig91.update_layout(height=600, width=1000)
+fig91.update_layout(dragmode=False)
 
-fig2=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, 2015)
-fig2.update_layout(height=600, width=1000)
-fig2.update_layout(dragmode=False)
+fig92=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, 2015)
+fig92.update_layout(height=600, width=1000)
+fig92.update_layout(dragmode=False)
+
+
+# Get the figure for Viz 6
+fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
+years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 
 # The page 1 layout
@@ -43,9 +48,10 @@ layout =html.Div(children=[
 
             #Display the visualization 9.1
             dcc.Dropdown(id='dropdownYear',options=[2015,2016,2017,2018,2019,2020],value=2015),
-            dcc.Graph(id='linegraph',figure=fig1),
+            dcc.Graph(id='linegraph',figure=fig91),
             
             #Display the visualization 9.2
+            html.H6('Select the year from on the slider below:'),
             dcc.Slider(
                         2015,
                         2020,
@@ -53,34 +59,33 @@ layout =html.Div(children=[
                         id='sliderYear',
                         value=2020,
                         marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
-            dcc.Graph(id='bargraph',figure=fig2),
+            dcc.Graph(id='bargraph',figure=fig92),
             ]
         ),
 ])
 
+
+#Callbacks for Viz 9
 @dash.callback(
     Output('linegraph', 'figure'),
     [Input('dropdownYear', 'value')])
 
-def update_graph(value):
+def update_viz91(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
     we_data= preprocess.get_traf_we_data(oltc_data)
-    fig1=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
-    return fig1  
+    fig91=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
+    return fig91  
 
 @dash.callback(
     Output('bargraph', 'figure'),
     [Input('sliderYear', 'value')])
 
-def update_graph(value):
+def update_viz92(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
     we_data= preprocess.get_traf_we_data(oltc_data)
-    fig2=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, value)
-    return fig2    
+    fig92=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, value)
+    return fig92    
 
-"""    
-fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
-years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 
 #layout = html.Div(children=[
@@ -129,7 +134,9 @@ def update_graph(year, month):
         fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,year, month)
 
     return fig6        
-"""     
+
+
+
 '''layout = html.Div([
             html.H1('Lifespan data',
                     style={'textAlign':'center'}),
