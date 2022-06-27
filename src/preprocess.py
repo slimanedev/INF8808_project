@@ -93,7 +93,7 @@ def  adjust_data_for_viz3(oltc_data):
     
     tap = 'tapAfter'
     # Chnage the Time format
-    oltc_data['Time']= oltc_data['Time'].apply(lambda x:dt.datetime.strptime(x, "%I:%M:%S %p").hour)
+    oltc_data['Time']= oltc_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
 
     Time_sorted_data = oltc_data.sort_values('Time')
     h = Time_sorted_data['Time']
@@ -123,7 +123,7 @@ def  adjust_data_for_viz3(oltc_data):
 
     ### Create the exact time #########
     lst = list(np.int32(df1['Time_in_Hours']))
-    df1['Time_in_Hours'] = [dt.time(hour=x).strftime("%H:%M") for x in lst]
+    df1['Time_in_Hours'] = [datetime.time(hour=x).strftime("%H:%M") for x in lst]
     
     return df1
 
