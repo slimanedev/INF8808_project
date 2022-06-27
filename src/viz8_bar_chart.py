@@ -15,7 +15,7 @@ def get_monthly_current_plot(df):
         df_year = df[df.year==year]
         df_year = df_year.sort_values(by=['month'])
         fig.add_trace(go.Bar(x=df_year.month, y=df_year['tapCircCurrAmp'], 
-                            name=year, text = ["2015", "2016", "2017", "2018", "2019", "2030"],
+                            name=year, text =df_year['year'],
                             hovertemplate =template.get_hover_template_viz8()))
 
     fig.update_xaxes(categoryorder='array', categoryarray= month)
