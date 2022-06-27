@@ -27,7 +27,7 @@ fig_viz2.update_layout(dragmode=False)
 #fig_viz3=viz3_bar_chart.plot_box_chart(data)
 
 # Plot for box chart - Viz 4
-fig_viz4=viz4_box_chart.plot_box_chart(data)
+fig_viz4=viz4_box_chart.plot_box_chart(data,2020)
 fig_viz4.update_layout(height=600, width=1000)
 fig_viz4.update_layout(dragmode=False)
 
@@ -52,8 +52,15 @@ layout =html.Div(children=[
             #dcc.Graph(figure=fig_viz3),
 
             #Display the visualization 4
-            #html.H3('Variation of average tap circulating current over time'),
-            dcc.Graph(figure=fig_viz4),
+            html.H3('Variation of tap operation time'),
+            dcc.Graph(id='box_chart',figure=fig_viz4),
+            dcc.Slider(
+                2015,
+                2020,
+                step=None,
+                id='sliderYear',
+                value=2020,
+                marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
 
             #Display the visualization 7
             #html.H3('Variation of average tap circulating current over time'),
@@ -61,3 +68,12 @@ layout =html.Div(children=[
             
         ]),
 ],style={'padding': 10, 'flex': 1})
+
+@dash.callback(
+    Output('box_chart', 'figure'),
+    [Input('sliderYear', 'value')])
+
+def update_viz91_viz92(value):
+    fig_viz4 = viz4_box_chart.plot_box_chart(data,value)
+    
+    return fig_viz4

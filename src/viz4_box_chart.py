@@ -1,12 +1,15 @@
 import pandas as pd
 import plotly.express as px
 
-def plot_box_chart(data):
+#This dunction is for the all time data
+def plot_box_chart(data, year):
     
     data['Date']=pd.to_datetime(data['Date'])
+    idx1=data['Date'].dt.year == year
+    df=data[idx1]
 
     # Plot for the box chart
-    fig = px.box(data, 
+    fig = px.box(df, 
         x = 'tapBefore', 
         y = "tapOperationTime",
         color='tapBefore',
@@ -20,7 +23,7 @@ def plot_box_chart(data):
     # Add mean time period to switch tap as an horizontal-dotted-black-line
     fig.add_hline(y=global_average, line_dash="dot",
               annotation_text="All-time average tap operation time", 
-              annotation_position="top right",
+              annotation_position="bottom left",
               annotation_font_size=15,
               annotation_font_color="black"
              )
