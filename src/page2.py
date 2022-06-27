@@ -1,5 +1,5 @@
 import pathlib, dash
-import preprocess, viz1_line_chart, viz2_bar_chart, viz4_box_chart, viz7_area_chart
+import preprocess, viz1_line_chart, viz2_bar_chart, viz4_box_chart, viz7_area_chart, viz3_bar_chart
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash import dcc
@@ -24,7 +24,9 @@ fig_viz2.update_layout(height=600, width=1000)
 fig_viz2.update_layout(dragmode=False)
 
 # Plot for box chart - Viz 3
-#fig_viz3=viz3_bar_chart.plot_box_chart(data)
+data1 = preprocess.drop_irrelevant_time(oltc_data)
+data =  preprocess.adjust_data_for_viz3(data1)
+fig_viz3 = viz3_bar_chart.bar_plot_animation_Max_PowerLoss(data)
 
 # Plot for box chart - Viz 4
 fig_viz4=viz4_box_chart.plot_box_chart(data,2020)
@@ -49,7 +51,7 @@ layout =html.Div(children=[
             
             #Display the visualization 3
             #html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
-            #dcc.Graph(figure=fig_viz3),
+            dcc.Graph(figure=fig_viz3),
 
             #Display the visualization 4
             html.H3('Variation of tap operation time'),
