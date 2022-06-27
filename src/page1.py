@@ -60,9 +60,28 @@ layout =html.Div(children=[
                         value=2020,
                         marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             dcc.Graph(id='bargraph',figure=fig92),
-            ]
-        ),
-])
+            
+            #Display the visualization 6
+            html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
+            html.Label('Select the year:'),
+            dcc.Dropdown(
+                        id = 'years',
+                        options = [{
+                                'label' : i, 
+                                'value' : i
+                        } for i in years],
+                        value = '2015',
+                        clearable = True),
+            html.Label('Select the month:'),
+            dcc.Dropdown(
+                        id = 'months',
+                        options = [],
+                        value = '5',
+                        clearable = True),
+            dcc.Graph(id = 'fig-six', figure=fig6),
+            
+        ]),
+],style={'padding': 10, 'flex': 1})
 
 
 #Callbacks for Viz 9
@@ -87,33 +106,8 @@ def update_viz92(value):
     return fig92    
 
 
-
-#layout = html.Div(children=[
-#    html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
-#    html.Div([
-#        html.Div([
-#            html.Label('Select the year:'),
-#            dcc.Dropdown(
-#                 id = 'years',
-#                 options = [{
-#                         'label' : i, 
-#                         'value' : i
-#                 } for i in years],
-#                value = '2015',
-#                clearable = True),], style=dict(width='50%')),
-#        html.Div([
-#            html.Label('Select the month:'),
-#            dcc.Dropdown(
-#            id = 'months',
-#            options = [],
-#            value = '5',
-#            clearable = True)], 
-#            style=dict(width='50%'))], style=dict(display='flex')),
-#    dcc.Graph(id = 'fig-six', figure=fig6),
-#])
-
-
-@app.callback(
+#Callbacks for Viz 6
+@dash.callback(
     Output('months', 'options'),
     Input('years', 'value')
 )
@@ -121,28 +115,15 @@ def set_month_options(year):
     d_year = oltc_data[(oltc_data['Date'].dt.strftime('%Y') == year)]
     return [{'label': i, 'value': i} for i in (d_year['Date'].dt.strftime('%m')).unique()]
 
-@app.callback(
+@dash.callback(
     Output('fig-six', 'figure'),
     Input('years', 'value'),
     Input('months', 'value')
 )
-def update_graph(year, month):
-
+def update_viz6(year, month):
     if (year == None) or (month == None):
         return dash.no_update
     else:
         fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,year, month)
-
     return fig6        
 
-
-
-'''layout = html.Div([
-            html.H1('Lifespan data',
-                    style={'textAlign':'center'}),
-            dcc.Graph(id='bargraph',
-                    figure=px.bar(df, barmode='group', x='Years',
-                    y=['Attribut1', 'Attribut2']))
-                ]
-    )
-'''
