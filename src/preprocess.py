@@ -126,4 +126,3 @@ def  adjust_data_for_viz3(oltc_data):
     df1['Time_in_Hours'] = [datetime.time(hour=x).strftime("%H:%M") for x in lst]
     
     return df1
-
