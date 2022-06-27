@@ -36,14 +36,7 @@ fig_viz4.update_layout(dragmode=False)
 
 fig_viz8=viz8_bar_chart.get_monthly_current_plot(data)
 
-layout = html.Div([
-            html.H1(' Variation of circulating current amplitude over time',
-                    style={'textAlign':'center'}),
-            dcc.Graph(id='boxplot',
-                    figure= fig_viz8
-                )
-        ]
-)
+
 
 layout = html.Div(children=[
             html.Div([
@@ -59,5 +52,12 @@ layout = html.Div(children=[
                         figure=fig_viz4
                 )
             ]
-        )
+        ),
+        html.Div([            
+            dcc.Graph(id='boxplot',
+                    figure= fig_viz8
+                )
+        ]
+)
+
 ])
