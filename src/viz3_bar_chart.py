@@ -24,12 +24,12 @@ def bar_plot_animation_Max_PowerLoss(df1):
     
     fig.update_xaxes(title_text='Date in Year')
     
-    fig = fig.update_traces(hovertemplate = get_viz3_hover_template())
+    fig = fig.update_traces(hovertemplate = template.get_viz3_hover_template())
 
     # Set the hover in each frame
     for frame in fig.frames:
         for data in frame.data:
-            data.hovertemplate = get_viz3_hover_template()
+            data.hovertemplate = template.get_viz3_hover_template()
             
     return fig
 
