@@ -38,7 +38,7 @@ fig_viz4.update_layout(dragmode=False)
 
 # Plot for area chart - Viz 7
 df = preprocess.adjust_data_for_viz7(oltc_data)
-fig_viz7 = viz7_area_chart.area_plot_Energy_Loss(df)
+fig_viz7 = viz7_area_chart.area_plot_Power_Loss(df)
 
 
 # The page 2 layout
@@ -69,8 +69,8 @@ layout = html.Div(children=[
 
             #Display the visualization 4
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
-            html.H3('Variation of tap operation time'),
-            html.H6('Use slider below to change the year'),
+            html.H5('Variation of tap operation time'),
+            html.Label('Use slider below to change the year'),
             dcc.Slider(
                 2015,
                 2020,
@@ -81,8 +81,8 @@ layout = html.Div(children=[
             dcc.Graph(id = 'box_chart',figure = fig_viz4),
 
             #Display the visualization 7
-            #html.H3('Variation of average tap circulating current over time'),
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),         
+            html.H5("Tap changers stress vary throughout several time periods"),
             dcc.Graph(figure = fig_viz7),
             
         ]),
