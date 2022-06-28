@@ -1,6 +1,10 @@
 import plotly.graph_objects as go
 import preprocess, template
+<<<<<<< HEAD
 import numpy 
+=======
+import numpy
+>>>>>>> a2e4f581a62f0eed87ad10ac7d2dcd26729598a1
 import pandas as pd
 
 def dumbbell_plot(data,input_year, input_month):
