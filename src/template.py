@@ -83,7 +83,7 @@ def get_hover_template_viz1():
     return hovertemplate
 
 def get_hover_template_viz2():
-    hovertemplate = '<b>Tap position:</b> %{y}<br><b>Number of Changes</b>: %{x}<extra></extra>'
+    hovertemplate = '<b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
     return hovertemplate
 
 def get_viz3_hover_template():
