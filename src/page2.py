@@ -14,9 +14,12 @@ DATA_PATH = PATH.joinpath("data").resolve()
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
+# Preprocess the data
+data = preprocess.convert_dates(oltc_data)
+data = preprocess.drop_irrelevant_time(oltc_data)
+
 # Plot line chart - Viz 1
-data=preprocess.drop_irrelevant_time(oltc_data)
-fig_viz1 = viz1_line_chart.plot_line_chart(data)
+fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = 0)
 
 # Plot bar chart for viz 2
 fig_viz2 = viz2_bar_chart.BarChart(data)
@@ -79,3 +82,34 @@ def update_viz91_viz92(value):
     fig_viz4 = viz4_box_chart.plot_box_chart(data,value)
     
     return fig_viz4
+
+
+
+
+#layout for viz one
+layout =html.Div(children=[html.Div([html.H3('Tap Switching Pattern', 
+                                                          style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
+                                                  dcc.Graph(id='tap-switch',figure=fig_viz1),
+                                                  html.H5('Use slider below to change the duration', 
+                                                          style={'color': '#68228B', 'fontSize': 16}),
+                                                  dcc.Slider(
+                                                      0,
+                                                      3,
+                                                      step=None,
+                                                      id='slider-duration-viz1',
+                                                      value=0,
+                                                      marks={
+                                                          0: {'label': 'Past Week'},
+                                                          1: {'label': 'Past Two Weeks'},
+                                                          2: {'label': 'Past Three Weeks'},
+                                                          3: {'label': 'Past Month'}},)],)])
+#callback for viz one
+@dash.callback(
+    Output('tap-switch', 'figure'),
+    [Input('slider-duration-viz1', 'value')])
+
+def update_viz(value):
+
+    fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = value)
+    
+    return fig_viz1 
