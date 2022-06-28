@@ -12,7 +12,7 @@ from dash import dcc
 import plotly.express as px
 from dash.dependencies import Input, Output
 import pandas as pd
-import page1, page2, dashboard, dataDescription
+import page1, page2, dashboard
 
 # Define Path to get the datas
 PATH = pathlib.Path(__file__).parent
