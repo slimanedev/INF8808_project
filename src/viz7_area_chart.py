@@ -20,6 +20,9 @@ def area_plot_Energy_Loss(data):
     )
 
     fig.update_xaxes(title_text = 'Date in Year')
+     fig.update_layout(
+            title = 'Average of Energy Loss during of Years'
+            )
 
     return fig
 
@@ -28,8 +31,10 @@ def area_plot_Power_Loss(data):
         x = "Date",
         y = "tapPowerLossAmp",
     )
-    fig.update_xaxes(title_text = 'Date')
+    fig.update_xaxes(title_text = 'Date in Year')
     fig.update_yaxes(title_text = 'Power Loss Average Amplitude (kw)')
-
+    fig.update_layout(
+            title = 'Average of Power Loss during of Years'
+            )
     return fig
     
