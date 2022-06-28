@@ -49,19 +49,8 @@ layout = html.Div(children=[
             
             #Display the visualization 1
             html.H5('Tap Switching Pattern'),
+            html.Label('Use slider below to change the duration'),
             dcc.Slider(0,3,step=None,id='slider-duration-viz1',value=0,marks={
-                                                          0: {'label': 'Past Week'},
-                                                          1: {'label': 'Past Two Weeks'},
-                                                          2: {'label': 'Past Three Weeks'},
-                                                          3: {'label': 'Past Month'}},),
-            html.H5('Use slider below to change the duration', style={'color': '#68228B', 'fontSize': 16}),
-                                                    dcc.Slider(
-                                                      0,
-                                                      3,
-                                                      step=None,
-                                                      id='slider-duration-viz1',
-                                                      value=0,
-                                                      marks={
                                                           0: {'label': 'Past Week'},
                                                           1: {'label': 'Past Two Weeks'},
                                                           2: {'label': 'Past Three Weeks'},
@@ -90,7 +79,7 @@ layout = html.Div(children=[
                 value = 2020,
                 marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             dcc.Graph(id = 'box_chart',figure = fig_viz4),
-            
+
             #Display the visualization 7
             #html.H3('Variation of average tap circulating current over time'),
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),         
