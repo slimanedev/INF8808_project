@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd 
 import plotly.graph_objects as go
 import datetime
-import hover_template
+import template
 def scatter_recent_history_tap(data, selected_range):
     
     # Define the duration period. 
@@ -26,7 +26,7 @@ def scatter_recent_history_tap(data, selected_range):
     
     # Set hover template 
     fig.update_traces(customdata=pd.to_datetime(recent_data['Date']).dt.strftime('%Y-%B-%d'),
-                      hovertemplate=hover_template.get_tap_history_hover_template())
+                      hovertemplate=template.get_tap_history_hover_template())
     #showdividers=False dividerwidth ticklen tickmode = 'array'
     # Updating the layout
     fig.update_layout(
