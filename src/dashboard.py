@@ -32,7 +32,7 @@ fig.update_layout(title= 'Power Loss Average per Tap (kw)',
                     xaxis_title='Taps',)
 
 # Get tap recent history plot
-fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 0)
+fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 'Past Week')
 
 #The layout of the dashboard
 layout = html.Div(className='content', children=[
@@ -80,9 +80,20 @@ layout = html.Div(className='content', children=[
 ],style={'padding':5})
 
 
+
+# New layout for tap frequency plot:
+layout =html.Div(children=[html.Div([html.H3('Recent history of tap used'),
+                                                  html.H5('Use dropdown below to change the duration'),
+                                                  dcc.Dropdown(['Past Week', 'Past Ten Days', 'Past Two Weeks'], 
+                                                               'Past Week', id='tap-frequency-dropdown'),
+                                                  html.Div(id='dd-output-container'),
+                                                  dcc.Graph(id='tap-frequency',figure=fig),])])
+
+
 @dash.callback(
     Output('tap-frequency', 'figure'),
-    [Input('slider-duration', 'value')])
+    [Input('tap-frequency-dropdown', 'value')])
+
 def update_viz(value):
-    fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = value)
-    return fig1 
+    fig = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = value)
+    return fig
