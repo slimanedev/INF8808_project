@@ -52,14 +52,17 @@ layout = html.Div(children=[
             dcc.Graph(figure = fig_viz1),
             
             #Display the visualization 2
-            #html.Label('Select the year from on the slider below:'),
+            html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+            #html.H5('Select the year from on the slider below:'),
             dcc.Graph(figure = fig_viz2),
             
             #Display the visualization 3
-            #html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
+            html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+            #html.H5('Difference between Tap Power Loss Time and Tap Operation Time'),
             dcc.Graph(figure = fig_viz3),
 
             #Display the visualization 4
+            html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             html.H3('Variation of tap operation time'),
             dcc.Graph(id = 'box_chart',figure = fig_viz4),
             html.H6('Use slider below to change the year'),
