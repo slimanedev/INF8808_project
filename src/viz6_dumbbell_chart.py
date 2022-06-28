@@ -1,11 +1,13 @@
 import plotly.graph_objects as go
 import preprocess, template
-
+import numpy
 
 def dumbbell_plot(data,input_year, input_month):
     
     #Filter the dataframe by selected year and selected month, making sure they fall in the desired range.
     df = preprocess.filter_by_year_month(data, input_year, input_month)
+
+    custom_data=list(df[['Date','tapOperationTime','tapTime_PowLoss']].to_numpy())
     
     # The dumbbell plot
     fig = go.Figure()
@@ -38,8 +40,8 @@ def dumbbell_plot(data,input_year, input_month):
         )
     
     # Set hover template for bumbbell plot
-    fig.update_traces(customdata=dff[['Date', 'tapOperationTime', "tapTime_PowLoss"]],
-                      hovertemplate=template.get_dumbbell_hover_template())
+    fig.update_traces(customdata=custom_data,
+                hovertemplate=template.get_dumbbell_hover_template())
     
     # Updating the layout
     fig.update_layout(

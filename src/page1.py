@@ -82,8 +82,7 @@ layout = html.Div(children=[
                         options = [],
                         value = '5',
                         clearable = True),
-            dcc.Graph(id = 'fig-six',
-                figure = fig6),
+            dcc.Graph(id = 'fig-six',figure = fig6),
 
             #Display the visualization 8
             html.H3('Variation of average tap circulating current over time'),
@@ -102,7 +101,6 @@ def update_viz91_viz92(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
     we_data = preprocess.get_traf_we_data(oltc_data)
     fig91 = viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
-    
     return fig91  
 
 @dash.callback(

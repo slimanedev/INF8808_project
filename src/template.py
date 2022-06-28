@@ -132,19 +132,12 @@ def get_dumbbell_hover_template():
         are normal weight.
     '''
     # Return the hover template
+
+    return '<b>Date:</b> %{customdata[0]}'+'<br><b>Time:</b> %{x}'+'<br><b>Tap Operation Time:</b> %{customdata[1]}'+'<br><b>Tap Power Loss Time:</b> %{customdata[2]}'+'<br><extra></extra>'
     
-    #Diff = '%{customdata[1]}' - '%{customdata[2]}'
-    
-    #diff = int(str('%{customdata[2]}')) - int(str('%{customdata[1]}'))
-    #a = '%{customdata[1]}'
-    #a = map(float, '%{customdata[1]}')
-    #b = map(float, '%{customdata[2]}')
-    #b = float('%{customdata[2]}')
-    #diff = f'{a - b}'
-    
-    return '<br>'.join([
-            'Date: %{customdata[0]}'.format("%b-%d-%Y"),
-            'Time: %{x[1]}',
-            'Tap Operation Time: %{customdata[1]}',
-            'Tap Power Loss Time: %{customdata[2]}',
-            'Difference: %{diff}',])
+    #'<br>'.join([])
+    #'Date: %{df[0]}'.format("%b-%d-%Y"),
+    #'Time: %{x[1]}',
+    #'Tap Operation Time: %{df[1]}',
+    #'Tap Power Loss Time: %{df[2]}',
+    #'Difference: %{diff}',])
