@@ -88,10 +88,10 @@ def get_hover_template_viz2():
 
 def get_viz3_hover_template():
     
-    return """<span style='font-weight:bold'><b>    Max_loadCurr</b></span><span style='font-weight:normal'> : %{customdata[0]} <br /></span>
+    return """<span style='font-weight:bold'><b>    Max_LoadCurrent</b></span><span style='font-weight:normal'> : %{customdata[0]} <br /></span>
     <span style='font-weight:bold'><b>Max_PowerLoss</b></span><span style='font-weight:normal'> : %{customdata[1]} <br /></span>
     <span style='font-weight:bold'><b>Max_EnergyLoss</b></span><span style='font-weight:normal'> : %{customdata[2]} <br /></span>
-    <span style='font-weight:bold'><b>Max_CircCurr</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
+    <span style='font-weight:bold'><b>Max_CircCurrent</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
 
 def get_hover_template_viz8():
   hovertemplate = '<b>Year: %{x} <br><b>Circulatiing current: %{y}(kA) <extra></extra>'
