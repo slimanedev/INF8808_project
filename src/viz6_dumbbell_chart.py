@@ -38,8 +38,8 @@ def dumbbell_plot(data,input_year, input_month):
         )
     
     # Set hover template for bumbbell plot
-    #fig.update_traces(customdata=dff[['Date', 'tapOperationTime', "tapTime_PowLoss"]],
-    #                  hovertemplate=hover_template.get_dumbbell_hover_template())
+    fig.update_traces(customdata=dff[['Date', 'tapOperationTime', "tapTime_PowLoss"]],
+                      hovertemplate=template.get_dumbbell_hover_template())
     
     # Updating the layout
     fig.update_layout(
