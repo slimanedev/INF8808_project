@@ -104,5 +104,16 @@ def get_viz3_hover_template():
     <span style='font-weight:bold'><b>Max_CircCurr</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
 
 
+# Hover template for tap history plot in dashboard
+def get_tap_history_hover_template():
+    '''
+        Sets the template for the hover tooltips in the tap recent history plot in dashboard.
 
+        Contains three labels, followed by their corresponding
+        value, separated by a colon : tap number, date, and time.
+
+        The labels are bold. The values are normal weight.
+    '''
+    # Return the hover template
+    return """<b>Tap Number</b>: %{y} <br /><b>Date</b>: %{customdata} <br /><b>Time</b>: %{x[1]} <br /><extra></extra>"""
 
