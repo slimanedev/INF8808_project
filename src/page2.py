@@ -29,9 +29,9 @@ data =  preprocess.adjust_data_for_viz3(data1)
 fig_viz3 = viz3_bar_chart.bar_plot_animation_Max_PowerLoss(data)
 
 # Plot for box chart - Viz 4
-fig_viz4=viz4_box_chart.plot_box_chart(data,2020)
-fig_viz4.update_layout(height=600, width=1000)
-fig_viz4.update_layout(dragmode=False)
+#fig_viz4=viz4_box_chart.plot_box_chart(data,2020)
+#fig_viz4.update_layout(height=600, width=1000)
+#fig_viz4.update_layout(dragmode=False)
 
 # Plot for area chart - Viz 7
 df=preprocess.adjust_data_for_viz7(oltc_data)
@@ -55,7 +55,7 @@ layout =html.Div(children=[
 
             #Display the visualization 4
             html.H3('Variation of tap operation time'),
-            dcc.Graph(id='box_chart',figure=fig_viz4),
+            #dcc.Graph(id='box_chart',figure=fig_viz4),
             dcc.Slider(
                 2015,
                 2020,

@@ -7,8 +7,8 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
-
 import tap_history_dashboard, preprocess
+
 # Define Path to get the datas
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
@@ -31,15 +31,21 @@ fig.update_traces(marker_color='blue', marker_line_color='blue',
 fig.update_layout(title= 'Power Loss Average per Tap (kw)',
                     xaxis_title='Taps',)
 
+# Get tap recent history plot
+fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 0)
+
 #The layout of the dashboard
 layout = html.Div(className='content', children=[
-        html.Header(children=[
-                html.H1('Tap changer performance',style={'textAlign':'center'}),]),
-
-        html.Div(className='viz-container', children=[
-                dcc.Graph(id='bargraph',figure=fig,),
-        ]),
-
+        html.Header(children=[html.H1('Recent Tap KPIs',style={'textAlign':'center'}),],style={'padding':0}),
+        
+        html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+        
+        html.Div(children=[html.Label('Use slider below to change the duration'),
+                 #style={'color': '#68228B', 'fontSize': 16}),
+                dcc.Slider(0,3,step=None,id='slider-duration',value=0,marks={0: {'label': 'Past Week'},1: {'label': 'Past Two Weeks'},2: {'label': 'Past Three Weeks'},3: {'label': 'Past Month'}})]),
+        
+        html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+        
         html.Div(className='content', children=[
                 html.Div(children=[
                         html.H4('Total Power Loss (kw)',style={'textAlign':'center'}),
@@ -60,30 +66,20 @@ layout = html.Div(className='content', children=[
                         html.H4(total_tap_change_time,style={'textAlign':'center','padding': 10,'color': 'blue'}),
                         html.Br(),
                         ], style={'padding': 10, 'flex': 1})
-        ],style={'display': 'flex', 'flex-direction': 'row'})
-])
+        ],style={'display': 'flex', 'flex-direction': 'row','padding':20}),
 
+        html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
 
+        html.Div(children=[html.Div([#html.H3('Recent history of tap used', 
+                                                          #style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
+                                                dcc.Graph(id='tap-frequency',figure=fig1),],)],style={'padding':20}),
+        
+        html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
 
-# Get tap recent history plot
-fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 0)
+        html.Div(className='viz-container', children=[dcc.Graph(id='bargraph',figure=fig,),]),
 
-layout =html.Div(children=[html.Div([html.H3('Recent history of tap used', 
-                                                          style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
-                                                  dcc.Graph(id='tap-frequency',figure=fig1),
-                                                  html.H5('Use slider below to change the duration', 
-                                                          style={'color': '#68228B', 'fontSize': 16}),
-                                                  dcc.Slider(
-                                                      0,
-                                                      3,
-                                                      step=None,
-                                                      id='slider-duration',
-                                                      value=0,
-                                                      marks={
-                                                          0: {'label': 'Past Week'},
-                                                          1: {'label': 'Past Two Weeks'},
-                                                          2: {'label': 'Past Three Weeks'},
-                                                          3: {'label': 'Past Month'}},)],)])
+],style={'padding':5})
+
 
 @dash.callback(
     Output('tap-frequency', 'figure'),

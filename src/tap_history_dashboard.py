@@ -17,12 +17,10 @@ def scatter_recent_history_tap(data, selected_range):
     start = end - datetime.timedelta(days = duration)    # The start of the desired duration
     recent_data = data.loc[(data['Date'] >= start)& (data['Date'] <= (end))]   # Get the data in the desired range
     
-
-    
     # Plot the scatter plot for the desired duration
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=[recent_data["Date"].dt.strftime('%d'),recent_data["Time"]], y=recent_data['tapBefore'], 
-                             mode = 'markers',marker = dict(color='blueviolet'),
+                             mode = 'markers',marker = dict(color='blue'),
                              name='Tap Frequency'))
     # Set hover template 
     fig.update_traces(customdata=pd.to_datetime(recent_data['Date']).dt.strftime('%Y-%B-%d'),
@@ -35,5 +33,5 @@ def scatter_recent_history_tap(data, selected_range):
                        tickfont=dict(size=10),ticklabeloverflow = 'hide past domain'),
             yaxis = dict(title = 'Taps',ticks='',tickvals=np.arange(1,20, step=1)),
             plot_bgcolor = 'beige',
-            font=dict( color="RebeccaPurple"))
+            font=dict( color="black")) #RebeccaPurple
     return fig
