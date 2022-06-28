@@ -119,3 +119,32 @@ def get_tap_history_hover_template():
     '''
     # Return the hover template
     return """<b>Tap Number</b>: %{y} <br /><b>Date</b>: %{customdata} <br /><b>Time</b>: %{x[1]} <br /><extra></extra>"""
+
+# Hver template for Viz6
+def get_dumbbell_hover_template():
+    '''
+        Sets the template for the hover tooltips in the dumbbell plot.
+
+        Contains two labels, followed by their corresponding
+        value, separated by a colon : date and calculated time.
+
+        The labels are font 'Roboto Slab' and bold. The values
+        are normal weight.
+    '''
+    # Return the hover template
+    
+    #Diff = '%{customdata[1]}' - '%{customdata[2]}'
+    
+    #diff = int(str('%{customdata[2]}')) - int(str('%{customdata[1]}'))
+    #a = '%{customdata[1]}'
+    #a = map(float, '%{customdata[1]}')
+    #b = map(float, '%{customdata[2]}')
+    #b = float('%{customdata[2]}')
+    #diff = f'{a - b}'
+    
+    return '<br>'.join([
+            'Date: %{customdata[0]}'.format("%b-%d-%Y"),
+            'Time: %{x[1]}',
+            'Tap Operation Time: %{customdata[1]}',
+            'Tap Power Loss Time: %{customdata[2]}',
+            'Difference: %{diff}',])
