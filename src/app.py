@@ -12,7 +12,7 @@ from dash import dcc
 import plotly.express as px
 from dash.dependencies import Input, Output
 import pandas as pd
-import page1, page2, dashboard
+import page1, page2, dashboard, dataDescription
 
 # Define Path to get the datas
 PATH = pathlib.Path(__file__).parent
@@ -58,10 +58,17 @@ sidebar = html.Div(
                 dbc.NavLink("Dashboard", href="/", active="exact"),
                 dbc.NavLink("Transformer Performance", href="/page-1", active="exact"),
                 dbc.NavLink("Tap changer Performance", href="/page-2", active="exact"),
+                #dbc.NavLink("Data Description", href="/DataDescription.pdf", active="exact"),
             ],
             vertical=True,
             pills=True,
         ),
+        html.Hr(),
+        dbc.Button("Data Description", id="btn-download-txt",color="secondary",outline=True),
+        dcc.Download(id="download-text"),
+        html.Hr(),
+        dbc.Button("Demo video", href="https://www.youtube.com/watch?v=oiKj0Z_Xnjc",color="secondary",outline=True)
+
     ],
     style=SIDEBAR_STYLE,
 )
@@ -92,6 +99,9 @@ def render_page_content(pathname):
     elif pathname == "/page-2":
         return page2.layout
     
+    elif pathname == "/page-3":
+        return dataDescription.layout
+    
     # If the user tries to reach a different page, return a 404 message
     return dbc.Jumbotron(
         [
@@ -100,6 +110,16 @@ def render_page_content(pathname):
             html.P(f"The pathname {pathname} was not recognised..."),
         ]
     )
+
+# Callbacks for the download button
+@app.callback(
+    Output("download-text", "data"),
+    Input("btn-download-txt", "n_clicks"),
+    prevent_initial_call=True,
+)
+def func1(n_clicks):
+    return dcc.send_file(DATA_PATH.joinpath("DataDescription.pdf"))
+
 
 if __name__ == '__main__':
     app.run_server(debug=False)

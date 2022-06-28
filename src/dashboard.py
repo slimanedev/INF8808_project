@@ -41,7 +41,6 @@ layout = html.Div(className='content', children=[
         html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
         
         html.Div(children=[html.Label('Use slider below to change the duration'),
-                 #style={'color': '#68228B', 'fontSize': 16}),
                 dcc.Slider(0,2,step=None,id='slider-duration',value=0,marks={0: {'label': 'Past Week'},1: {'label': 'Past Ten Days'},2: {'label': 'Past Two Weeks'}})]),
         
         html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
