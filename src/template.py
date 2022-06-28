@@ -46,14 +46,16 @@ def create_custom_theme():
     '''
     # TODO : Generate template described above
     pio.templates['custom'] = dict(
-        layout=go.Layout(
-        title_font=dict(family = THEME['font_family'], color= THEME['dark_color']),
-        font=dict(family = THEME['font_family'], color= THEME['dark_color']),
+        layout = go.Layout(
+        title_font = dict(family = THEME['font_family'],
+            color = THEME['dark_color']),
+        font = dict(family = THEME['font_family'],
+            color= THEME['dark_color']),
         plot_bgcolor = THEME['plot_background_color'], 
-        hoverlabel=dict(font=
-                        dict(family=THEME['font_family'],
-                             size=THEME['label_font_size'],
-                             color=THEME['dark_color']),
+        hoverlabel = dict(font=
+                        dict(family = THEME['font_family'],
+                             size = THEME['label_font_size'],
+                             color = THEME['dark_color']),
                              bgcolor = THEME['label_background_color'])))
 
 def set_default_theme():
@@ -77,23 +79,11 @@ def set_default_theme():
 # Define chart templates when needed
 
 def get_hover_template_viz1():
-    hovertemplate= '<b>Date: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
+    hovertemplate = '<b>Date: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
     return hovertemplate
 
 def get_hover_template_viz2():
-    hovertemplate= '<b>%{y}</b><br><br><b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
-    return hovertemplate
-
-def get_hover_template_viz8():
-  hovertemplate= '<b>Year: %{x} <br><b>Circulatiing current: %{y}(kA) <extra></extra>'
-  return hovertemplate
-
-def get_hover_template_viz9_barchart():
-    hovertemplate= '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
-    return hovertemplate
-
-def get_hover_template_viz9_linechart():
-    hovertemplate= '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
+    hovertemplate = '<b>%{y}</b><br><br><b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
     return hovertemplate
 
 def get_viz3_hover_template():
@@ -102,6 +92,19 @@ def get_viz3_hover_template():
     <span style='font-weight:bold'><b>Max_PowerLoss</b></span><span style='font-weight:normal'> : %{customdata[1]} <br /></span>
     <span style='font-weight:bold'><b>Max_EnergyLoss</b></span><span style='font-weight:normal'> : %{customdata[2]} <br /></span>
     <span style='font-weight:bold'><b>Max_CircCurr</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
+
+def get_hover_template_viz8():
+  hovertemplate = '<b>Year: %{x} <br><b>Circulatiing current: %{y}(kA) <extra></extra>'
+  return hovertemplate
+
+def get_hover_template_viz9_barchart():
+    hovertemplate = '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
+    return hovertemplate
+
+def get_hover_template_viz9_linechart():
+    hovertemplate = '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
+    return hovertemplate
+
 
 
 # Hover template for tap history plot in dashboard
@@ -116,4 +119,3 @@ def get_tap_history_hover_template():
     '''
     # Return the hover template
     return """<b>Tap Number</b>: %{y} <br /><b>Date</b>: %{customdata} <br /><b>Time</b>: %{x[1]} <br /><extra></extra>"""
-

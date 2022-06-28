@@ -39,21 +39,21 @@ def filter_by_year_month(dataframe, year, month):
   
 def get_traf_wd_data(data):
        
-    df=data.copy()
-    df['Date']=pd.to_datetime(df['Date'])
-    idx=df['Date'].dt.weekday < 5  # sunday=6, saturday=5; for weekends
-    wd_data=df.loc[idx, ['Date', 'Time', 'TrafoLoadCurr']] #data for weekdays
-    wd_data['Time']= wd_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
+    df = data.copy()
+    df['Date'] = pd.to_datetime(df['Date'])
+    idx = df['Date'].dt.weekday < 5                             # Monday to Friday = 0 to 4
+    wd_data = df.loc[idx, ['Date', 'Time', 'TrafoLoadCurr']]    # Saturday = 5 && Sunday = 6
+    wd_data['Time'] = wd_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
 
     return wd_data
 
 def get_traf_we_data(data):
        
-    df=data.copy()
-    df['Date']=pd.to_datetime(df['Date'])
-    idx=df['Date'].dt.weekday > 4  # sunday=6, saturday=5; for weekends
-    we_data=df.loc[idx, ['Date', 'Time', 'TrafoLoadCurr']]  #data for weekends
-    we_data['Time']= we_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
+    df = data.copy()
+    df['Date'] = pd.to_datetime(df['Date'])
+    idx = df['Date'].dt.weekday > 4                             # Monday to Friday = 0 to 4
+    we_data = df.loc[idx, ['Date', 'Time', 'TrafoLoadCurr']]    # Saturday = 5 && Sunday = 6
+    we_data['Time'] = we_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
 
     return we_data
 
@@ -65,12 +65,12 @@ def drop_irrelevant_time(data):
 
 def get_monthly_average_current (df):
 
-    df1=df[['Date', 'Time', 'TrafoLoadCurr', 'tapCircCurrAmp']]
-    df1['year']=df1['Date'].dt.year
-    df1['month']=df1['Date'].dt.month_name()
+    df1 = df[['Date', 'Time', 'TrafoLoadCurr', 'tapCircCurrAmp']]
+    df1['year'] = df1['Date'].dt.year
+    df1['month'] = df1['Date'].dt.month_name()
 
-    df2=df1.groupby(['year', 'month'], as_index=False).agg({'tapCircCurrAmp': 'mean'})
-    df2=df2.sort_values(['year', 'month'])
+    df2 = df1.groupby(['year', 'month'], as_index=False).agg({'tapCircCurrAmp': 'mean'})
+    df2 = df2.sort_values(['year', 'month'])
     df2.reset_index(drop=True)
     
     return df2
@@ -82,7 +82,7 @@ def adjust_data_for_viz7(oltc_data):
 
     oltc_data.sort_values(by='Date')
 
-    df=oltc_data.groupby(pd.PeriodIndex(oltc_data['Date'], freq='M')).agg({'tapPowerLossAmp': (np.mean),
+    df = oltc_data.groupby(pd.PeriodIndex(oltc_data['Date'], freq='M')).agg({'tapPowerLossAmp': (np.mean),
                                                                            'Date':'first','tapEnergyLoss': (np.mean)})
     df['year'] = pd.DatetimeIndex(df['Date']).year
     df.head()
@@ -92,13 +92,13 @@ def adjust_data_for_viz7(oltc_data):
 def  adjust_data_for_viz3(oltc_data):
     
     tap = 'tapAfter'
-    # Chnage the Time format
-    oltc_data['Time']= oltc_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
+    # Change the time format
+    oltc_data['Time'] = oltc_data['Time'].apply(lambda x:datetime.datetime.strptime(x, "%I:%M:%S %p").hour)
 
     Time_sorted_data = oltc_data.sort_values('Time')
     h = Time_sorted_data['Time']
 
-    ### Select the suitable data and create new dataframe ####
+    # Select the suitable data and create new dataframe
     output_tap = []
     ind0 = 0
     for i in range(24):
@@ -121,7 +121,7 @@ def  adjust_data_for_viz3(oltc_data):
     
     df1 = pd.DataFrame(data)
 
-    ### Create the exact time #########
+    # Create the exact time
     lst = list(np.int32(df1['Time_in_Hours']))
     df1['Time_in_Hours'] = [datetime.time(hour=x).strftime("%H:%M") for x in lst]
     

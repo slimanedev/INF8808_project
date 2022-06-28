@@ -15,21 +15,27 @@ DATA_PATH = PATH.joinpath("data").resolve()
 
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
-total_power_loss=round(sum(oltc_data['tapPowerLossAmp']),2)
-total_circulating_current=round(sum(oltc_data['tapCircCurrAmp']),2)
-total_energy_loss=round(sum(oltc_data['tapEnergyLoss']),2)
-total_tap_change_time=round(sum(oltc_data['tapOperationTime']),2)
+total_power_loss = round(sum(oltc_data['tapPowerLossAmp']),2)
+total_circulating_current = round(sum(oltc_data['tapCircCurrAmp']),2)
+total_energy_loss = round(sum(oltc_data['tapEnergyLoss']),2)
+total_tap_change_time = round(sum(oltc_data['tapOperationTime']),2)
 
 # Preprocess the data
 oltc_data = preprocess.convert_dates(oltc_data)
 oltc_data = preprocess.drop_irrelevant_time(oltc_data)
 
 #Get the main figure
-fig=go.Figure(go.Bar(x=oltc_data['tapBefore'], y=oltc_data['tapPowerLossAmp']))
-fig.update_traces(marker_color='blue', marker_line_color='blue',
-                  marker_line_width=1.5, opacity=0.6)
-fig.update_layout(title= 'Power Loss Average per Tap (kw)',
-                    xaxis_title='Taps',)
+fig = go.Figure(go.Bar(x = oltc_data['tapBefore'],
+        y = oltc_data['tapPowerLossAmp']
+        )
+)
+fig.update_traces(marker_color = 'blue',
+        marker_line_color = 'blue',
+        marker_line_width = 1.5,
+        opacity = 0.6
+)
+fig.update_layout(title = 'Power Loss Average per Tap (kw)',
+                    xaxis_title = 'Taps',)
 
 # Get tap recent history plot
 fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 'Past Week')
@@ -85,7 +91,7 @@ layout = html.Div(className='content', children=[
 
 
 # New layout for tap frequency plot:
-layout2xs =html.Div(children=[html.Div([html.H3('Recent history of tap used'),
+layout2xs = html.Div(children=[html.Div([html.H3('Recent history of tap used'),
                                                   html.H5('Use dropdown below to change the duration'),
                                                   dcc.Dropdown(['Past Week', 'Past Ten Days', 'Past Two Weeks'], 
                                                                'Past Week', id='tap-frequency-dropdown'),

@@ -21,47 +21,49 @@ wd_data = preprocess.get_traf_wd_data(oltc_data)
 we_data= preprocess.get_traf_we_data(oltc_data)
 
 # Get the figures for Viz 9
-fig91=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, 2015)
-fig91.update_layout(height=600, width=1000)
-fig91.update_layout(dragmode=False)
+fig91 = viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, 2015)
+fig91.update_layout(height = 600, width = 1000)
+fig91.update_layout(dragmode = False)
 
-fig92=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, 2015)
-fig92.update_layout(height=600, width=1000)
-fig92.update_layout(dragmode=False)
+fig92 = viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, 2015)
+fig92.update_layout(height = 600, width = 1000)
+fig92.update_layout(dragmode = False)
 
 # Get the figure for Viz 6
 fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 # Get the figure for Viz 8
-fig8=viz8_bar_chart.get_monthly_current_plot(oltc_data)
+fig8 = viz8_bar_chart.get_monthly_current_plot(oltc_data)
 
 # The page 1 layout
-layout =html.Div(children=[
+layout = html.Div(children=[
         html.Div([
             html.H3('Transformer load current for different years'),
             
             #Display the visualization 9.1
-            dcc.Graph(id='linegraph',figure=fig91),
+            dcc.Graph(id = 'linegraph',
+                figure = fig91),
             html.H6('Use slider below to change the year'),
             dcc.Slider(
                         2015,
                         2020,
-                        step=None,
-                        id='sliderYear1',
-                        value=2020,
-                        marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
+                        step = None,
+                        id = 'sliderYear1',
+                        value = 2020,
+                        marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             
             #Display the visualization 9.2
-            dcc.Graph(id='bargraph',figure=fig92),
+            dcc.Graph(id = 'bargraph',
+                figure = fig92),
             html.H6('Use slider below to change the year'),
             dcc.Slider(
                         2015,
                         2020,
-                        step=None,
-                        id='sliderYear2',
-                        value=2020,
-                        marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
+                        step = None,
+                        id = 'sliderYear2',
+                        value = 2020,
+                        marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             
             #Display the visualization 6
             html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
@@ -80,11 +82,12 @@ layout =html.Div(children=[
                         options = [],
                         value = '5',
                         clearable = True),
-            dcc.Graph(id = 'fig-six', figure=fig6),
+            dcc.Graph(id = 'fig-six',
+                figure = fig6),
 
             #Display the visualization 8
             html.H3('Variation of average tap circulating current over time'),
-            dcc.Graph(figure=fig8),
+            dcc.Graph(figure = fig8),
             
         ]),
 ],style={'padding': 10, 'flex': 1})
@@ -97,8 +100,8 @@ layout =html.Div(children=[
 
 def update_viz91_viz92(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
-    we_data= preprocess.get_traf_we_data(oltc_data)
-    fig91=viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
+    we_data = preprocess.get_traf_we_data(oltc_data)
+    fig91 = viz9_line_chart.get_transformer_avg_current_plot(wd_data,we_data, value)
     
     return fig91  
 
@@ -108,8 +111,8 @@ def update_viz91_viz92(value):
 
 def update_viz92(value):
     wd_data = preprocess.get_traf_wd_data(oltc_data)
-    we_data= preprocess.get_traf_we_data(oltc_data)
-    fig92=viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, value)
+    we_data = preprocess.get_traf_we_data(oltc_data)
+    fig92 = viz9_line_chart.get_transformer_max_current_plot(wd_data,we_data, value)
     return fig92    
 
 
@@ -133,4 +136,3 @@ def update_viz6(year, month):
     else:
         fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,year, month)
     return fig6        
-

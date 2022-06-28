@@ -23,8 +23,8 @@ fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = 0)
 
 # Plot bar chart for viz 2
 fig_viz2 = viz2_bar_chart.BarChart(data)
-fig_viz2.update_layout(height=600, width=1000)
-fig_viz2.update_layout(dragmode=False)
+fig_viz2.update_layout(height = 600, width = 1000)
+fig_viz2.update_layout(dragmode = False)
 
 # Plot for box chart - Viz 3
 data1 = preprocess.drop_irrelevant_time(oltc_data)
@@ -37,39 +37,39 @@ fig_viz3 = viz3_bar_chart.bar_plot_animation_Max_PowerLoss(data)
 #fig_viz4.update_layout(dragmode=False)
 
 # Plot for area chart - Viz 7
-df=preprocess.adjust_data_for_viz7(oltc_data)
-fig_viz7=viz7_area_chart.area_plot_Energy_Loss(df)
+df = preprocess.adjust_data_for_viz7(oltc_data)
+fig_viz7 = viz7_area_chart.area_plot_Energy_Loss(df)
 
 
 # The page 2 layout
-layout =html.Div(children=[
+layout = html.Div(children=[
         html.Div([
             #Display the visualization 1
             #html.H3('Transformer load current for different years'),
-            dcc.Graph(figure=fig_viz1),
+            dcc.Graph(figure = fig_viz1),
             
             #Display the visualization 2
             #html.H6('Select the year from on the slider below:'),
-            dcc.Graph(figure=fig_viz2),
+            dcc.Graph(figure = fig_viz2),
             
             #Display the visualization 3
             #html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
-            dcc.Graph(figure=fig_viz3),
+            dcc.Graph(figure = fig_viz3),
 
             #Display the visualization 4
             html.H3('Variation of tap operation time'),
-            #dcc.Graph(id='box_chart',figure=fig_viz4),
+            #dcc.Graph(id = 'box_chart',figure = fig_viz4),
             dcc.Slider(
                 2015,
                 2020,
-                step=None,
-                id='sliderYear',
-                value=2020,
-                marks={str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
+                step = None,
+                id = 'sliderYear',
+                value = 2020,
+                marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
 
             #Display the visualization 7
             #html.H3('Variation of average tap circulating current over time'),
-            dcc.Graph(figure=fig_viz7),
+            dcc.Graph(figure = fig_viz7),
             
         ]),
 ],style={'padding': 10, 'flex': 1})
