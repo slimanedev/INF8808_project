@@ -39,10 +39,12 @@ fig8 = viz8_bar_chart.get_monthly_current_plot(oltc_data)
 # The page 1 layout
 layout = html.Div(children=[
         html.Div([
-            html.H3('Transformer load current for different years'),
-            
+            html.H3('Transformer Performance',style={'textAlign':'center'}),
+            html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+
             #Display the visualization 9.1
-            html.H6('Use slider below to change the year'),
+            html.H5('Transformer load current for different years'),
+            html.Label('Use slider below to change the year'),
             dcc.Slider(
                         2015,
                         2020,
@@ -65,8 +67,11 @@ layout = html.Div(children=[
             dcc.Graph(id = 'bargraph',
                 figure = fig92),
             
+
+            html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+            
             #Display the visualization 6
-            html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),
+            html.H5('Difference between Tap Power Loss Time and Tap Operation Time'),
             html.Label('Select the year:'),
             dcc.Dropdown(
                         id = 'years',
@@ -75,17 +80,20 @@ layout = html.Div(children=[
                                 'value' : i
                         } for i in years],
                         value = '2015',
-                        clearable = True),
+                        clearable = True,
+                        style={'borderWidth': "0.3vh", "width": "55%", "color": "balck"}),
             html.Label('Select the month:'),
             dcc.Dropdown(
                         id = 'months',
                         options = [],
                         value = '5',
-                        clearable = True),
+                        clearable = True,
+                        style={'borderWidth': "0.3vh", "width": "55%", "color": "balck"}),
             dcc.Graph(id = 'fig-six',figure = fig6),
 
             #Display the visualization 8
-            html.H3('Variation of average tap circulating current over time'),
+            html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+            html.H5('Variation of average tap circulating current over time'),
             dcc.Graph(figure = fig8),
             
         ]),

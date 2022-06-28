@@ -48,7 +48,7 @@ fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_rang
 layout = html.Div(className='content', children=[
         html.Header(children=[html.H1('Recent Tap KPIs',style={'textAlign':'center'}),],style={'padding':0}),
                 
-        html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+        html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
         
         html.Div(className='content', children=[
                 html.Div(children=[

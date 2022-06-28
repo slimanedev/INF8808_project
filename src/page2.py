@@ -44,12 +44,15 @@ fig_viz7 = viz7_area_chart.area_plot_Energy_Loss(df)
 # The page 2 layout
 layout = html.Div(children=[
         html.Div([
+            html.H3('Tap Changer Performance',style={'textAlign':'center'}),
+            html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
+            
             #Display the visualization 1
-            #html.H3('Transformer load current for different years'),
+            #html.H5('Transformer load current for different years'),
             dcc.Graph(figure = fig_viz1),
             
             #Display the visualization 2
-            #html.H6('Select the year from on the slider below:'),
+            #html.Label('Select the year from on the slider below:'),
             dcc.Graph(figure = fig_viz2),
             
             #Display the visualization 3
@@ -85,9 +88,8 @@ def update_viz91_viz92(value):
 
 
 
-
 #layout for viz one
-layout =html.Div(children=[html.Div([html.H3('Tap Switching Pattern', 
+layout2 =html.Div(children=[html.Div([html.H3('Tap Switching Pattern', 
                                                           style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
                                                   dcc.Graph(id='tap-switch',figure=fig_viz1),
                                                   html.H5('Use slider below to change the duration', 
