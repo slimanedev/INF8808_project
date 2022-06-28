@@ -42,8 +42,6 @@ layout = html.Div(children=[
             html.H3('Transformer load current for different years'),
             
             #Display the visualization 9.1
-            dcc.Graph(id = 'linegraph',
-                figure = fig91),
             html.H6('Use slider below to change the year'),
             dcc.Slider(
                         2015,
@@ -52,10 +50,10 @@ layout = html.Div(children=[
                         id = 'sliderYear1',
                         value = 2020,
                         marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
+            dcc.Graph(id = 'linegraph',
+                figure = fig91),
             
             #Display the visualization 9.2
-            dcc.Graph(id = 'bargraph',
-                figure = fig92),
             html.H6('Use slider below to change the year'),
             dcc.Slider(
                         2015,
@@ -64,6 +62,8 @@ layout = html.Div(children=[
                         id = 'sliderYear2',
                         value = 2020,
                         marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
+            dcc.Graph(id = 'bargraph',
+                figure = fig92),
             
             #Display the visualization 6
             html.H3('Difference between Tap Power Loss Time and Tap Operation Time'),

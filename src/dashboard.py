@@ -24,6 +24,10 @@ total_tap_change_time = round(sum(oltc_data['tapOperationTime']),2)
 oltc_data = preprocess.convert_dates(oltc_data)
 oltc_data = preprocess.drop_irrelevant_time(oltc_data)
 
+oltc_data2 = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
+oltc_data2 = preprocess.convert_dates(oltc_data2)
+oltc_data2 = preprocess.drop_irrelevant_time(oltc_data2)
+
 #Get the main figure
 fig = go.Figure(go.Bar(x = oltc_data['tapBefore'],
         y = oltc_data['tapPowerLossAmp']
@@ -35,23 +39,15 @@ fig.update_traces(marker_color = 'blue',
         opacity = 0.6
 )
 fig.update_layout(title = 'Power Loss Average per Tap (kw)',
-                    xaxis_title = 'Taps',)
+                    xaxis_title = 'Taps')
 
 # Get tap recent history plot
 fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 'Past Week')
-fig2 = tap_history_dashboard.bar_chart_dashboard(oltc_data, selected_range = 'Past Week')
 
 #The layout of the dashboard
 layout = html.Div(className='content', children=[
         html.Header(children=[html.H1('Recent Tap KPIs',style={'textAlign':'center'}),],style={'padding':0}),
-        
-        html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
-        
-        #html.Div(children=[html.Label('Use slider below to change the duration'),
-        #        dcc.Slider(0,2,step=None,id='slider-duration',value=0,marks={0: {'label': 'Past Week'},1: {'label': 'Past Ten Days'},2: {'label': 'Past Two Weeks'}})]),
-        html.Label('Use dropdown below to change the duration'),
-        dcc.Dropdown(['Past Week', 'Past Ten Days', 'Past Two Weeks'],'Past Week', id='tap-frequency-dropdown',style={'borderWidth': "0.3vh", "width": "55%", "color": "balck"}),
-        
+                
         html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
         
         html.Div(className='content', children=[
@@ -78,27 +74,20 @@ layout = html.Div(className='content', children=[
 
         html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
 
-        html.Div(children=[html.Div([#html.H3('Recent history of tap used', 
-                                                          #style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
-                                                dcc.Graph(id='tap-frequency',figure=fig1),],)],style={'padding':20}),
+        html.Label('Use dropdown below to change the duration'),
+        dcc.Dropdown(['Past Week', 'Past Ten Days', 'Past Two Weeks'],'Past Week', id='tap-frequency-dropdown',style={'borderWidth': "0.3vh", "width": "55%", "color": "balck"}),
+        
+        html.Div(children=[html.Div([dcc.Graph(id='tap-frequency',figure=fig1),],)],style={'padding':20}),
         
         html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
-
-        html.Div(className='viz-container', children=[dcc.Graph(id='bargraph',figure=fig2),]),
+        
+        html.Div(className='viz-container', children=[dcc.Graph(id='bargraph',figure=fig),]),
 
 ],style={'padding':5})
 
 
 
-# New layout for tap frequency plot:
-layout2xs = html.Div(children=[html.Div([html.H3('Recent history of tap used'),
-                                                  html.H5('Use dropdown below to change the duration'),
-                                                  dcc.Dropdown(['Past Week', 'Past Ten Days', 'Past Two Weeks'], 
-                                                               'Past Week', id='tap-frequency-dropdown'),
-                                                  html.Div(id='dd-output-container'),
-                                                  dcc.Graph(id='tap-frequency',figure=fig),])])
-
-
+# Callback for tap frequency:
 @dash.callback(
     Output('tap-frequency', 'figure'),
     [Input('tap-frequency-dropdown', 'value')])
