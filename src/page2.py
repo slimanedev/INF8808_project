@@ -59,8 +59,8 @@ layout = html.Div(children=[
             
             #Display the visualization 2
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
-            #html.H5('Select the year from on the slider below:'),
-            html.H6('Use the slider to Change the timeframe of plot below:'),
+            html.H5('The frequency of tap changing over time'),
+            html.Label('Use the slider to Change the timeframe of plot below:'),
             dcc.Slider(
                         0,
                         2,
@@ -75,7 +75,7 @@ layout = html.Div(children=[
             
             #Display the visualization 3
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
-            #html.H5('Difference between Tap Power Loss Time and Tap Operation Time'),
+            html.H5('The power loss through heat during tap change'),
             dcc.Graph(figure = fig_viz3),
 
             #Display the visualization 4
