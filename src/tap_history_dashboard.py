@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd 
 import plotly.graph_objects as go
 import datetime
+import template
 
 def scatter_recent_history_tap(data, selected_range):
     
@@ -23,6 +24,9 @@ def scatter_recent_history_tap(data, selected_range):
     fig.add_trace(go.Scatter(x=[recent_data["Date"].dt.strftime('%d'),recent_data["Time"]], y=recent_data['tapBefore'], 
                              mode = 'markers',marker = dict(color='blueviolet'),
                              name='Tap Frequency'))
+    # Set hover template 
+    fig.update_traces(customdata=pd.to_datetime(recent_data['Date']).dt.strftime('%Y-%B-%d'),
+                      hovertemplate=template.get_tap_history_hover_template())
     
     # Updating the layout
     fig.update_layout(
