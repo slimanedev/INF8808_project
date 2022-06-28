@@ -83,7 +83,13 @@ layout = html.Div(children=[
             #Display the visualization 7
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),         
             html.H5("Tap changers stress vary throughout several time periods"),
-            dcc.Graph(figure = fig_viz7),
+            dcc.Dropdown(
+                        id = 'choice',
+                        options = ['Energy Loss','Power Loss'],
+                        value = 'Power Loss',
+                        clearable = True,
+                        style={'borderWidth': "0.3vh", "width": "40%", "color": "balck"}),
+            dcc.Graph(id='areagraph',figure = fig_viz7),
             
         ]),
 ],style={'padding': 10, 'flex': 1})
@@ -104,7 +110,17 @@ def update_viz4(value):
     [Input('slider-duration-viz1', 'value')])
 
 def update_viz(value):
-
     fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = value)
-    
     return fig_viz1
+
+
+#callback for viz 7
+@dash.callback(
+    Output('areagraph', 'figure'),
+    [Input('choice', 'value')])
+
+def update_viz7(value):
+    if value=='Power Loss':
+        fig_viz7 = viz7_area_chart.area_plot_Power_Loss(df)
+    else : fig_viz7 = viz7_area_chart.area_plot_Energy_Loss(df)
+    return fig_viz7
