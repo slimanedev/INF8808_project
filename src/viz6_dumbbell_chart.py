@@ -7,7 +7,8 @@ def dumbbell_plot(data,input_year, input_month):
     #Filter the dataframe by selected year and selected month, making sure they fall in the desired range.
     df = preprocess.filter_by_year_month(data, input_year, input_month)
 
-    custom_data=list(df[['Date','tapOperationTime','tapTime_PowLoss']].to_numpy())
+    df['sdate'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%B-%d')
+    custom_data=list(df[['sdate','tapOperationTime','tapTime_PowLoss']].to_numpy())
     
     # The dumbbell plot
     fig = go.Figure()
