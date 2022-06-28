@@ -101,8 +101,8 @@ def get_hover_template_viz9_barchart():
     hovertemplate = '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
     return hovertemplate
 
-def get_hover_template_viz9_linechart():
-    hovertemplate = '<b>Time (hour): %{x}<br><b>Average load current: %{y} (KA) <extra></extra>'
+def get_hover_template_dash_barchart():
+    hovertemplate = '<b>Tap: %{x}<br><b>Power Loss: %{y}<extra></extra>'
     return hovertemplate
 
 
