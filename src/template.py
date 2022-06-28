@@ -77,7 +77,7 @@ def set_default_theme():
 # Define chart templates when needed
 
 def get_hover_template_viz1():
-    hovertemplate= '<b>Day: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
+    hovertemplate= '<b>Date: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
     return hovertemplate
 
 def get_hover_template_viz2():
