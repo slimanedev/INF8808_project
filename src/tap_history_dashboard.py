@@ -23,9 +23,7 @@ def scatter_recent_history_tap(data, selected_range):
     end = data['Date'].iloc[-1]                                                 # The last data
     start = end - datetime.timedelta(days = duration)                           # The start of the desired duration
     recent_data = data.loc[(data['Date'] >= start)& (data['Date'] <= (end))]    # Get the data in the desired range
-    
 
-    
     # Plot the scatter plot for the desired duration
     fig = go.Figure()
     fig.add_trace(go.Scatter(x = [recent_data["Date"].dt.strftime('%d'),recent_data["Time"]],
@@ -75,20 +73,19 @@ def bar_chart_dashboard(data, selected_range):
     start = end - datetime.timedelta(days = duration)    # The start of the desired duration
     recent_data = data.loc[(data['Date'] >= start)& (data['Date'] <= (end))]   # Get the data in the desired range
     
-
-    
     # Plot the scatter plot for the desired duration
-    fig=go.Figure(go.Bar(x = recent_data['tapBefore'],
-        y=recent_data['tapPowerLossAmp'])
-        )
+    fig=go.Figure()
+    fig=fig.add_trace(go.Bar(x = recent_data['tapBefore'],
+        y=recent_data['tapPowerLossAmp'],
+        hovertemplate = template.get_hover_template_dash_barchart(),
+        ))
         
     # Update layout
     fig.update_traces(marker_color = 'blue',
         marker_line_color = 'blue',
         marker_line_width = 1.5,
-        opacity = 0.6
+        opacity = 0.6,
         )
 
-    fig.update_layout(title = 'Power Loss Average per Tap (kw)',
-                        xaxis_title = 'Taps',)
+    fig.update_layout(title = 'Power Loss Average per Tap (kw)',xaxis_title = 'Taps',yaxis_title = 'Power Loss Average (kw)')
     return fig
