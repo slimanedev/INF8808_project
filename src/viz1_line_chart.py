@@ -24,7 +24,7 @@ def plot_line_chart(data, selected_range):
     fig = px.line(recent_data,x = "Date",y = "tapAfter",line_shape='vh')
     
     # Set hover template 
-    fig.update_traces(hovertemplate= hover_template.get_hover_template_viz1())
+    fig.update_traces(hovertemplate= template.get_hover_template_viz1())
 
     # Updating the layout
     fig.update_layout(
