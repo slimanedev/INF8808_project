@@ -48,8 +48,25 @@ layout = html.Div(children=[
             html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             
             #Display the visualization 1
-            #html.H5('Transformer load current for different years'),
-            dcc.Graph(figure = fig_viz1),
+            html.H5('Tap Switching Pattern'),
+            dcc.Slider(0,3,step=None,id='slider-duration-viz1',value=0,marks={
+                                                          0: {'label': 'Past Week'},
+                                                          1: {'label': 'Past Two Weeks'},
+                                                          2: {'label': 'Past Three Weeks'},
+                                                          3: {'label': 'Past Month'}},),
+            html.H5('Use slider below to change the duration', style={'color': '#68228B', 'fontSize': 16}),
+                                                    dcc.Slider(
+                                                      0,
+                                                      3,
+                                                      step=None,
+                                                      id='slider-duration-viz1',
+                                                      value=0,
+                                                      marks={
+                                                          0: {'label': 'Past Week'},
+                                                          1: {'label': 'Past Two Weeks'},
+                                                          2: {'label': 'Past Three Weeks'},
+                                                          3: {'label': 'Past Month'}},),
+            dcc.Graph(id='tap-switch',figure=fig_viz1),
             
             #Display the visualization 2
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
@@ -64,7 +81,6 @@ layout = html.Div(children=[
             #Display the visualization 4
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             html.H3('Variation of tap operation time'),
-            dcc.Graph(id = 'box_chart',figure = fig_viz4),
             html.H6('Use slider below to change the year'),
             dcc.Slider(
                 2015,
@@ -73,9 +89,11 @@ layout = html.Div(children=[
                 id = 'sliderYear',
                 value = 2020,
                 marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
-
+            dcc.Graph(id = 'box_chart',figure = fig_viz4),
+            
             #Display the visualization 7
             #html.H3('Variation of average tap circulating current over time'),
+            html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),         
             dcc.Graph(figure = fig_viz7),
             
         ]),
