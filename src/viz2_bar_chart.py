@@ -9,7 +9,7 @@ def BarChart(data, date_range):
             '''
         Args:
             dataframe: The dataframe to process
-            date-range: Specify the time-frame by slider
+            date-range: The time-frame specified by the slider
         Returns:
             fig: The fig consists of the distribution of tap changer's numbers over each tap position
     '''
