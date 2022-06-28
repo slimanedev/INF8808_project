@@ -7,9 +7,9 @@ import template
 def scatter_recent_history_tap(data, selected_range):
     
     # Define the duration period. 
-    # Duration Keys indicate the selected range (past week, past two weeks, ...). 
+    # Duration Keys indicate the selected range (past week, past ten days, and past two weeks). 
     # Duration Values determines the number of days in that period.
-    Duration = {0: 7, 1: 14, 2: 21, 3: 30}
+    Duration = {0: 7, 1: 10, 2: 14}
     
     # Get the data in the desired duration
     duration = Duration[selected_range]
@@ -29,9 +29,10 @@ def scatter_recent_history_tap(data, selected_range):
     # Updating the layout
     fig.update_layout(
             title="Recent history of tap used from '{}' to '{}'".format(start.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d')),
-            xaxis=dict(title = 'Day-And-Time',gridcolor='#BDBDBD' ,side = 'bottom', position = 0.01, type='multicategory',
-                       tickfont=dict(size=10),ticklabeloverflow = 'hide past domain'),
+            xaxis=dict(title = 'Day-And-Time',gridcolor='#BDBDBD' ,side = 'bottom', type='multicategory',
+                       tickfont=dict(size=10), tickangle = -45, position = 0.01, 
+                       ticklabeloverflow = 'hide past domain'),
             yaxis = dict(title = 'Taps',ticks='',tickvals=np.arange(1,20, step=1)),
             plot_bgcolor = 'beige',
-            font=dict( color="black")) #RebeccaPurple
+            font=dict( color="black"))
     return fig
