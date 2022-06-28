@@ -1,44 +1,25 @@
 import plotly.graph_objects as go
 import preprocess, template
+import plotly_express as px
+
 
 def get_monthly_current_plot(data):
     
     data = preprocess.get_monthly_average_current(data)
-    year_list = data['year'].unique().tolist()
     
-    # Define months dictionary
-    month = ['January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ]
+    my_color=data['month'].astype(str)
 
-    # Plot bar chart for viz 8
-    fig = go.Figure()
-    for year in year_list:
-        data_year = data[data.year==year]
-        data_year = data_year.sort_values(by=['month'])
-        fig.add_trace(go.Bar(x=data_year.month,
-            y=data_year['tapCircCurrAmp'],
-            name=year,
-            text =data_year['year'],
-            hovertemplate =template.get_hover_template_viz8(),
-        ),
-    )
+    # Plot line chart for viz 8
+    fig=px.line(data,x=data['year'],y=data['tapCircCurrAmp'],color=my_color)
+
 
     # Update axes
-    fig.update_xaxes(categoryorder='array',categoryarray= month)
     fig.update_yaxes(title='Average tap circulating current (KA)')
 
+    # Add hover_template 
+    fig.update_traces(text=my_color,hovertemplate =template.get_hover_template_viz8())
+
     # Update layout
-    fig.update_layout(title="Average tap circulating current over months of the years")
+    fig.update_layout(title="Average tap circulating current over the years")
 
     return fig
