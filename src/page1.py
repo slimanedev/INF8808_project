@@ -31,6 +31,7 @@ fig92.update_layout(dragmode = False)
 
 # Get the figure for Viz 6
 fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,2015, 5)
+fig6.update_layout(height = 600, width = 1100)
 years = (oltc_data['Date'].dt.strftime('%Y')).unique()
 
 # Get the figure for Viz 8
@@ -141,4 +142,6 @@ def update_viz6(year, month):
         return dash.no_update
     else:
         fig6 = viz6_dumbbell_chart.dumbbell_plot(oltc_data,year, month)
+    
+    fig6.update_layout(height = 600, width = 1100)
     return fig6        
