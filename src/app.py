@@ -21,9 +21,6 @@ DATA_PATH = PATH.joinpath("data").resolve()
 # Get the data
 oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
-# Preprocess the data (I will use the object "preprocess.py")
-# df = pd.read_csv('./fakedata_to_delete.csv')
-
 # Initiate the app 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
