@@ -54,12 +54,11 @@ def dumbbell_plot(data,input_year, input_month):
             position = 0.01,
             type = 'multicategory',
             tickfont = dict(size=10),
+            tickangle = -45,
             ticklabeloverflow = 'hide past domain'),
         yaxis = dict(showgrid=False),
-        plot_bgcolor = 'beige',
         legend_title ='<b> Time </b>',
-        width = 1500,
-        font = dict(color="RebeccaPurple")
+        width = 1500
     )
 
     return fig   
