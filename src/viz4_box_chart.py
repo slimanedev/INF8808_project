@@ -12,8 +12,6 @@ def plot_box_chart(data, year):
     fig = px.box(df, 
         x = 'tapBefore', 
         y = "tapOperationTime",
-        # color ='tapBefore',
-        #category_orders = {'tapBefore': ["4", "5", "6", "7", "8", "9", "10", "11"]}
         labels = {'tapBefore': 'Tap position'}
         )
     

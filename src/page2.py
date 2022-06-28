@@ -28,13 +28,13 @@ fig_viz2.update_layout(dragmode = False)
 
 # Plot for box chart - Viz 3
 data1 = preprocess.drop_irrelevant_time(oltc_data)
-data =  preprocess.adjust_data_for_viz3(data1)
-fig_viz3 = viz3_bar_chart.bar_plot_animation_Max_PowerLoss(data)
+data2 =  preprocess.adjust_data_for_viz3(data1)
+fig_viz3 = viz3_bar_chart.bar_plot_animation_Max_PowerLoss(data2)
 
 # Plot for box chart - Viz 4
-#fig_viz4=viz4_box_chart.plot_box_chart(data,2020)
-#fig_viz4.update_layout(height=600, width=1000)
-#fig_viz4.update_layout(dragmode=False)
+fig_viz4=viz4_box_chart.plot_box_chart(data,2020)
+fig_viz4.update_layout(height=600, width=1000)
+fig_viz4.update_layout(dragmode=False)
 
 # Plot for area chart - Viz 7
 df = preprocess.adjust_data_for_viz7(oltc_data)
@@ -58,7 +58,8 @@ layout = html.Div(children=[
 
             #Display the visualization 4
             html.H3('Variation of tap operation time'),
-            #dcc.Graph(id = 'box_chart',figure = fig_viz4),
+            dcc.Graph(id = 'box_chart',figure = fig_viz4),
+            html.H6('Use slider below to change the year'),
             dcc.Slider(
                 2015,
                 2020,
@@ -78,7 +79,7 @@ layout = html.Div(children=[
     Output('box_chart', 'figure'),
     [Input('sliderYear', 'value')])
 
-def update_viz91_viz92(value):
+def update_viz4(value):
     fig_viz4 = viz4_box_chart.plot_box_chart(data,value)
     
     return fig_viz4
@@ -87,7 +88,7 @@ def update_viz91_viz92(value):
 
 
 #layout for viz one
-layout =html.Div(children=[html.Div([html.H3('Tap Switching Pattern', 
+'''layout =html.Div(children=[html.Div([html.H3('Tap Switching Pattern', 
                                                           style={'color': '#68228B', 'fontSize': 32,'textAlign': 'center'}),
                                                   dcc.Graph(id='tap-switch',figure=fig_viz1),
                                                   html.H5('Use slider below to change the duration', 
@@ -112,4 +113,4 @@ def update_viz(value):
 
     fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = value)
     
-    return fig_viz1 
+    return fig_viz1 '''
