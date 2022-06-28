@@ -16,7 +16,7 @@ oltc_data = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 
 # Preprocess the data
 data = preprocess.convert_dates(oltc_data)
-data = preprocess.drop_irrelevant_time(oltc_data)
+data = preprocess.drop_irrelevant_time(data)
 
 # Plot line chart - Viz 1
 fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = 0)
