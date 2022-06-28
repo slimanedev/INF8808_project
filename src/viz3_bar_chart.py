@@ -22,7 +22,8 @@ def bar_plot_animation_Max_PowerLoss(data):
             tickmode = 'linear',
             tick0 = 0,
             dtick = 1
-                )
+                ),
+            title = 'Maximum of Power Loss during hours of the day with changing tap positions'
             )
     
     # Update axes
@@ -31,7 +32,7 @@ def bar_plot_animation_Max_PowerLoss(data):
                      dtick = 0.1,
                      title_text = 'Max Power Loss (Kwt)')
     
-    fig.update_xaxes(title_text = 'Date in Year')
+    fig.update_xaxes(title_text = 'Hours in Day')
     
     # Set the hover in each frame
     for frame in fig.frames:
