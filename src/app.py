@@ -96,8 +96,6 @@ def render_page_content(pathname):
     elif pathname == "/page-2":
         return page2.layout
     
-    elif pathname == "/page-3":
-        return dataDescription.layout
     
     # If the user tries to reach a different page, return a 404 message
     return dbc.Jumbotron(
