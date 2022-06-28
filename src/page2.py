@@ -22,7 +22,7 @@ data = preprocess.drop_irrelevant_time(data)
 fig_viz1 = viz1_line_chart.plot_line_chart(data, selected_range = 0)
 
 # Plot bar chart for viz 2
-fig_viz2 = viz2_bar_chart.BarChart(data)
+fig_viz2 = viz2_bar_chart.BarChart(data, 2)
 fig_viz2.update_layout(height = 600, width = 1000)
 fig_viz2.update_layout(dragmode = False)
 
@@ -60,7 +60,18 @@ layout = html.Div(children=[
             #Display the visualization 2
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             #html.H5('Select the year from on the slider below:'),
-            dcc.Graph(figure = fig_viz2),
+            html.H6('Use the slider to Change the timeframe of plot below:'),
+            dcc.Slider(
+                        0,
+                        2,
+                        step=None,
+                        id='slider-duration-viz2',
+                        value=2,
+                        marks={
+                            0: {'label': 'Last 7-days'},
+                            1: {'label': 'Last 30-days'},
+                            2: {'label': 'All-Time'}}),
+            dcc.Graph(id='barchart',figure = fig_viz2),
             
             #Display the visualization 3
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
@@ -94,6 +105,18 @@ layout = html.Div(children=[
         ]),
 ],style={'padding': 10, 'flex': 1})
 
+
+#callback for viz2
+@dash.callback(
+    Output('barchart', 'figure'),
+    [Input('slider-duration-viz2', 'value')])
+
+def update_viz2(value):
+    fig_viz2 = viz2_bar_chart.BarChart(data,value)
+    
+    return fig_viz2
+
+#callback for viz4
 @dash.callback(
     Output('box_chart', 'figure'),
     [Input('sliderYear', 'value')])
