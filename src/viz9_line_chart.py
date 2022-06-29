@@ -2,7 +2,15 @@ import plotly.graph_objects as go
 import template
 
 def get_transformer_avg_current_plot (data1,data2, year):   
-    
+    '''
+    Get the line chart for viz 9
+        Args:
+            data1: The dataframe with weekdays
+            data2: The dataframe with weekends
+            year: The year to display
+        Returns:
+            fig: Line chart
+    '''    
     idx1 = data1['Date'].dt.year == year
     idx2 = data2['Date'].dt.year == year
     
@@ -41,7 +49,15 @@ def get_transformer_avg_current_plot (data1,data2, year):
     return fig
 
 def get_transformer_max_current_plot (data1,data2, year):   
-    
+    '''
+    Get the bar chart for viz 9
+        Args:
+            data1: The dataframe with weekdays
+            data2: The dataframe with weekends
+            year: The year to display
+        Returns:
+            fig: Bar chart
+    '''  
     idx1 = data1['Date'].dt.year == year
     idx2 = data2['Date'].dt.year == year
     
