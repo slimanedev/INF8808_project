@@ -42,7 +42,7 @@ def plot_box_chart(data, year):
     
     # Update layout
     fig.update_layout(
-        title = "Box-plot for the tap operation time based on the tap position",
+        title = f"Box-plot for the tap operation time based on the tap position in year {year}",
         xaxis_title = "Tap position",
         yaxis_title = 'Tap operation time (second)'
     )
