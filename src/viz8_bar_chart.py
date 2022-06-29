@@ -5,6 +5,7 @@ import plotly.express as px
 
 def get_monthly_current_plot(data):
     '''
+    Get the line chart for viz 8
         Args:
             dataframe: The dataframe to process
         Returns:
