@@ -4,12 +4,23 @@ import numpy
 import pandas as pd
 
 def dumbbell_plot(data,input_year, input_month):
+    '''
+        Draws the dumbbell plot.
+
+        Arg:
+            dataframe: The data to be displayed
+            input_year: The selected year form the dropdown button
+            input_month: The selected month form the dropdown button
+        Returns:
+            fig: The figure comprising the drawn dumbbell plot
+    '''
     
     # Filter the dataframe by selected year and selected month, making sure they fall in the desired range.
     df = preprocess.filter_by_year_month(data, input_year, input_month)
-
+    
+    # Defining the custom data for hover information of the plot
     df['sdate'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%B-%d')
-    custom_data=list(df[['sdate','tapOperationTime','tapTime_PowLoss']].to_numpy())
+    custom_data = list(df[['sdate','tapOperationTime','tapTime_PowLoss']].to_numpy())
     
     # The dumbbell plot
     fig = go.Figure()
@@ -42,8 +53,8 @@ def dumbbell_plot(data,input_year, input_month):
         )
     
     # Set hover template for bumbbell plot
-    fig.update_traces(customdata=custom_data,
-                hovertemplate=template.get_dumbbell_hover_template())
+    fig.update_traces(customdata = custom_data,
+                      hovertemplate = template.get_dumbbell_hover_template())
     
     # Updating the layout
     fig.update_layout(
