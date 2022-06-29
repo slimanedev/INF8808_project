@@ -7,7 +7,15 @@ import template
 
 
 def scatter_recent_history_tap(data, selected_range):
-    
+    '''
+        Draws the scatter plot in the dashboard.
+
+        Arg:
+            data: The data to be displayed
+            selected_range: The selected period of time form the slider
+        Returns:
+            fig: The figure comprising the drawn line plot
+    '''
     '''
     Define the duration period. 
     Duration Keys indicate the selected range (past week, past ten days, and past two weeks) 
