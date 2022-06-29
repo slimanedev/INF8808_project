@@ -2,8 +2,7 @@ import pathlib, dash
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash import Dash, dcc, html, Input, Output
-from dash.dependencies import Input, Output, State
-import plotly.express as px
+from dash.dependencies import Input, Output
 import pandas as pd
 import preprocess,  viz6_dumbbell_chart, viz9_line_chart, viz8_bar_chart
 
