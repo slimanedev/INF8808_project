@@ -59,7 +59,7 @@ def scatter_recent_history_tap(data, selected_range):
                 ticks = '',
                 tickvals = np.arange(1,20, step=1)),
             plot_bgcolor = 'beige',
-            font = dict( color="RebeccaPurple"))
+            font = dict( color="black"))
     return fig
 
 

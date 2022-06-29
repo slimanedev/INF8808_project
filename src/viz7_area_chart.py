@@ -4,7 +4,14 @@ import plotly.express as px
 
 
 def area_plot_Energy_Loss(data):
-
+    '''
+        Draws the area chart. 
+        This area chart shows the average energy loss in each month of the year.
+        Arg:
+            data: The data to be displayed
+        Returns:
+            fig: The figure comprising the area chart
+    '''
     # Plot area chart for viz 7.1
     fig = px.area(data,
         x = "Date",
@@ -18,7 +25,14 @@ def area_plot_Energy_Loss(data):
     return fig
 
 def area_plot_Power_Loss(data):
-
+    '''
+        Draws the area chart. 
+        This area chart shows the average power loss in each month of the year.
+        Arg:
+            data: The data to be displayed
+        Returns:
+            fig: The figure comprising the area chart
+    '''
     # Plot area chart for viz 7.2
     fig = px.area(data,
         x = "Date",

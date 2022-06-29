@@ -46,7 +46,6 @@ def plot_line_chart(data, selected_range):
             yaxis = dict(title = 'Taps',
                 ticks = '',
                 tickvals = np.arange(1,20, step=1)),
-            plot_bgcolor = 'beige',
             yaxis_title = "Tap number"
         )
         
