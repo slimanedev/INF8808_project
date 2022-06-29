@@ -47,7 +47,7 @@ layout = html.Div(children=[
             html.H3('Tap Changer Performance',style={'textAlign':'center'}),
             html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             
-            #Display the visualization 1
+            # Display the visualization 1
             html.H5('Tap Switching Pattern'),
             html.Label('Use slider below to change the duration'),
             dcc.Slider(0,3,step=None,id='slider-duration-viz1',value=0,marks={
@@ -57,7 +57,7 @@ layout = html.Div(children=[
                                                           3: {'label': 'Past Month'}},),
             dcc.Graph(id='tap-switch',figure=fig_viz1),
             
-            #Display the visualization 2
+            # Display the visualization 2
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             html.H5('The frequency of tap changing over time'),
             html.Label('Use the slider to Change the timeframe of plot below:'),
@@ -73,12 +73,12 @@ layout = html.Div(children=[
                             2: {'label': 'All-Time'}}),
             dcc.Graph(id='barchart',figure = fig_viz2),
             
-            #Display the visualization 3
+            # Display the visualization 3
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             html.H5('The power loss through heat during tap change'),
             dcc.Graph(figure = fig_viz3),
 
-            #Display the visualization 4
+            # Display the visualization 4
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             html.H5('Variation of tap operation time'),
             html.Label('Use slider below to change the year'),
@@ -91,7 +91,7 @@ layout = html.Div(children=[
                 marks = {str(year): str(year) for year in [2015,2016,2017,2018,2019,2020]},),
             dcc.Graph(id = 'box_chart',figure = fig_viz4),
 
-            #Display the visualization 7
+            # Display the visualization 7
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),         
             html.H5("Tap changers stress vary throughout several time periods"),
             dcc.Dropdown(
@@ -106,7 +106,7 @@ layout = html.Div(children=[
 ],style={'padding': 10, 'flex': 1})
 
 
-#callback for viz2
+# Callback for viz2
 @dash.callback(
     Output('barchart', 'figure'),
     [Input('slider-duration-viz2', 'value')])
@@ -116,7 +116,7 @@ def update_viz2(value):
     
     return fig_viz2
 
-#callback for viz4
+# Callback for viz4
 @dash.callback(
     Output('box_chart', 'figure'),
     [Input('sliderYear', 'value')])
@@ -127,7 +127,7 @@ def update_viz4(value):
     return fig_viz4
 
 
-#callback for viz one
+# Callback for viz one
 @dash.callback(
     Output('tap-switch', 'figure'),
     [Input('slider-duration-viz1', 'value')])
@@ -137,7 +137,7 @@ def update_viz(value):
     return fig_viz1
 
 
-#callback for viz 7
+# Callback for viz 7
 @dash.callback(
     Output('areagraph', 'figure'),
     [Input('choice', 'value')])

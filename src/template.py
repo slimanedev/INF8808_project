@@ -72,7 +72,7 @@ def set_default_theme():
         barmode = 'relative'
     )
     
-    #setting the tempalte
+    # Setting the tempalte
     pio.templates.default = 'plotly_white+custom'
     fig.update_layout(template = pio.templates.default)
 
@@ -120,7 +120,7 @@ def get_tap_history_hover_template():
     # Return the hover template
     return """<b>Tap Number</b>: %{y} <br /><b>Date</b>: %{customdata} <br /><b>Time</b>: %{x[1]} <br /><extra></extra>"""
 
-# Hver template for Viz6
+# Hover template for Viz6
 def get_dumbbell_hover_template():
     '''
         Sets the template for the hover tooltips in the dumbbell plot.

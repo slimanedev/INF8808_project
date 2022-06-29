@@ -7,7 +7,6 @@ def get_monthly_current_plot(data):
     
     data = preprocess.get_monthly_average_current(data)
     
-
     # Plot line chart for viz 8
     fig = px.line(data,
         x = data['year'],

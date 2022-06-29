@@ -5,7 +5,7 @@ import pandas as pd
 
 def dumbbell_plot(data,input_year, input_month):
     
-    #Filter the dataframe by selected year and selected month, making sure they fall in the desired range.
+    # Filter the dataframe by selected year and selected month, making sure they fall in the desired range.
     df = preprocess.filter_by_year_month(data, input_year, input_month)
 
     df['sdate'] = pd.to_datetime(df['Date']).dt.strftime('%Y-%B-%d')

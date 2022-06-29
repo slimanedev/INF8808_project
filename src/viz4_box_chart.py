@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-#This dunction is for the all time data
+# This function is for the all time data
 def plot_box_chart(data, year):
     
     data['Date'] = pd.to_datetime(data['Date'])
@@ -15,8 +15,8 @@ def plot_box_chart(data, year):
         labels = {'tapBefore': 'Tap position'}
         )
     
-    # Get average value 
-    global_average = data['tapOperationTime'].mean().round(3)  #Average commutation time for all the tap positions
+    # Get Average commutation time for all the tap positions
+    global_average = data['tapOperationTime'].mean().round(3)
     
     # Add mean time period to switch tap as an horizontal-dotted-black-line
     fig.add_hline(y = global_average,

@@ -28,7 +28,7 @@ oltc_data2 = pd.read_csv(DATA_PATH.joinpath("OLTCresults.csv"))
 oltc_data2 = preprocess.convert_dates(oltc_data2)
 oltc_data2 = preprocess.drop_irrelevant_time(oltc_data2)
 
-#Get the main figure
+# Get the main figure
 fig = go.Figure(go.Bar(x = oltc_data['tapBefore'],
         y = oltc_data['tapPowerLossAmp']
         )
@@ -44,7 +44,7 @@ fig.update_layout(title = 'Power Loss Average per Tap (kw)',
 # Get tap recent history plot
 fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 'Past Week')
 
-#The layout of the dashboard
+# The layout of the dashboard
 layout = html.Div(className='content', children=[
         html.Header(children=[html.H1('Recent Tap KPIs',style={'textAlign':'center'}),],style={'padding':0}),
                 
