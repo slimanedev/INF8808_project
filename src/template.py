@@ -103,7 +103,13 @@ def get_hover_template_viz2():
 
 # Hover template for Viz3
 def get_viz3_hover_template():
-    
+    '''
+        Sets the template for the hover tooltips in the Viz 3.
+        Contains four labels, followed by their corresponding
+        value, separated by a colon : Max_loadcurrent, Max_PowerLoss, Max_EnergyLoss, and Max_CircCurrent.
+            
+        The labels are bold. The values are normal weight.
+    '''
     return """<span style='font-weight:bold'><b>    Max_LoadCurrent</b></span><span style='font-weight:normal'> : %{customdata[0]} <br /></span>
     <span style='font-weight:bold'><b>Max_PowerLoss</b></span><span style='font-weight:normal'> : %{customdata[1]} <br /></span>
     <span style='font-weight:bold'><b>Max_EnergyLoss</b></span><span style='font-weight:normal'> : %{customdata[2]} <br /></span>
@@ -163,10 +169,18 @@ def get_dumbbell_hover_template():
 
 # Hover template for Viz7 (Power loss)
 def get_viz7_2_hover_template():
-    
+    '''
+        Sets the template for the hover tooltips in the Viz 7 (power loss plot).
+        
+        values are rounded to the two decimal places.
+    '''
     return """<b>Day: %{x}<br><b>Power Loss: %{y:.2f} <extra></extra>"""
 
 # Hover template for Viz7 (Energy loss)
 def get_viz7_1_hover_template():
-    
+    '''
+        Sets the template for the hover tooltips in the Viz 7 (Energy loss plot).
+        
+        values are rounded to the three decimal places.
+    '''
     return """<b>Day: %{x}<br><b>Energy Loss: %{y:.3f} <extra></extra>"""
