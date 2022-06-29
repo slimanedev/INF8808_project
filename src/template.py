@@ -94,7 +94,7 @@ def get_viz3_hover_template():
     <span style='font-weight:bold'><b>Max_CircCurrent</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
 
 def get_hover_template_viz8():
-  hovertemplate = '<b>Year: %{x} <br><b>Circulatiing current: %{y:.2f}(kA) <extra></extra>'
+  hovertemplate = '<b>Year: %{x} <br><b>Circulatiing current: %{y:.4f}(kA) <extra></extra>'
   return hovertemplate
 
 def get_hover_template_viz9_barchart():
