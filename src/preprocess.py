@@ -55,6 +55,13 @@ def get_traf_we_data(data):
     return we_data
 
 def drop_irrelevant_time(data):
+    '''
+        Delete the irrelevant data. 
+        Args:
+            dataframe: The dataframe to process
+        Returns:
+            The modified data 
+    '''  
     idx = data[(data['Time'].str.contains('AM|PM'))].index
     new_data = data.iloc[idx,:]
     
@@ -87,6 +94,15 @@ def adjust_data_for_viz7(oltc_data):
 
 
 def  adjust_data_for_viz3(oltc_data):
+    '''
+        Converting hours from AM|PM to the normal and then sorting them.
+        Creating a new dataframe consisting of Time_in_Hours, Tap value, Max_loadCurr, Max_PowerLoss, Max_EnergyLoss, Max_CircCurr
+
+        Args:
+            oltc_data: The dataframe to process
+        Returns:
+            The new dataframe.
+    ''' 
     
     tap = 'tapAfter'
     # Change the time format
