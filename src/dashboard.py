@@ -29,7 +29,19 @@ oltc_data2 = preprocess.convert_dates(oltc_data2)
 oltc_data2 = preprocess.drop_irrelevant_time(oltc_data2)
 
 # Get the main figure
-fig = go.Figure(go.Bar(x = oltc_data['tapBefore'],
+df=oltc_data.groupby('tapBefore', as_index=False).agg({'tapPowerLossAmp': 'mean', 'tapEnergyLoss': 'mean'})
+
+fig = go.Figure(data=[
+    go.Bar(name='Average power loss', x=df.tapBefore, y=df.tapPowerLossAmp,hovertemplate = '<b>Tap position: %{x} <br><b>Average power loss: %{y} (KW)<extra></extra>'),
+    go.Bar(name='Average energy loss', x=df.tapBefore,y=df.tapEnergyLoss,hovertemplate = '<b>Tap position: %{x} <br><b>Average Energy loss: %{y} (KJ)<extra></extra>')
+])
+# Change the bar mode
+fig.update_layout(title= 'Average power loss and energy loss per each tap position',
+                  xaxis_title='Tap position',
+                  barmode='stack')
+
+
+'''fig = go.Figure(go.Bar(x = oltc_data['tapBefore'],
         y = oltc_data['tapPowerLossAmp']
         )
 )
@@ -39,7 +51,7 @@ fig.update_traces(marker_color = 'blue',
         opacity = 0.6
 )
 fig.update_layout(title = 'Power Loss Average per Tap (kw)',
-                    xaxis_title = 'Taps')
+                    xaxis_title = 'Taps')'''
 
 # Get tap recent history plot
 fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 'Past Week')
