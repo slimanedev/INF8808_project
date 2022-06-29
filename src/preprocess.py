@@ -14,7 +14,6 @@ def convert_dates(dataframe):
         Returns:
             The processed dataframe with datetime-formatted dates.
     '''
-    # TODO : Convert dates
     # Convert the value of 'Date' in the dataframe to datetime objects
     dataframe['Date'] = pd.to_datetime(dataframe['Date'])
     return dataframe
@@ -30,9 +29,7 @@ def filter_by_year_month(dataframe, year, month):
             month: The selected month by user
         Returns:
             The dataframe filtered by the desired year and month.
-    '''
-    # TODO : Filter by selected year and selected month
-    
+    '''    
     df_year = dataframe.loc[dataframe['Date'].dt.year == int(year)]
     df_year_month = df_year.loc[df_year['Date'].dt.month == int(month)]
     return df_year_month
