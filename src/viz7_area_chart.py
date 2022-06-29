@@ -18,6 +18,8 @@ def area_plot_Energy_Loss(data):
         y = "tapEnergyLoss",
     )
     
+    fig = fig.update_traces(hovertemplate = template.get_viz7_1_hover_template())
+    
     # Update axes
     fig.update_xaxes(title_text = 'Date in Year')
     fig.update_yaxes(range = [0, .026], title_text = 'Energy Loss')
@@ -38,7 +40,9 @@ def area_plot_Power_Loss(data):
         x = "Date",
         y = "tapPowerLossAmp",
     )
-
+    
+    fig = fig.update_traces(hovertemplate = template.get_viz7_2_hover_template())
+    
     # Update axes
     fig.update_xaxes(title_text = 'Date in Year')
     fig.update_yaxes(range = [0, 1], title_text = 'Power Loss Average Amplitude (kw)')
