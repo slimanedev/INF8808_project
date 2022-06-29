@@ -5,10 +5,19 @@ import datetime
 import template
 
 def plot_line_chart(data, selected_range):
+    '''
+        Draws the line chart.
+
+        Arg:
+            data: The data to be displayed
+            selected_range: The selected period of time form the slider
+        Returns:
+            fig: The figure comprising the drawn line plot
+    '''
     
     '''
     Define the duration period. 
-    Duration Keys indicate the selected range (past week, past ten days, and past two weeks) 
+    Duration Keys indicate the selected range (past week, past two weeks, past three weeks, and past month) 
     Duration Values determines the number of days in that period.
     '''
     Duration = {0:7, 1:14, 2:21, 3:30}
