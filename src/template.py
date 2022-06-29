@@ -160,3 +160,13 @@ def get_dumbbell_hover_template():
     # Return the hover template
     hovertemplate = '<b>Date:</b> %{customdata[0]}'+'<br><b>Time:</b> %{x[1]}'+'<br><b>Tap Operation Time:</b> %{customdata[1]:.3f}'+'<br><b>Tap Power Loss Time:</b> %{customdata[2]:.3f}'+'<br><extra></extra>'
     return hovertemplate
+
+# Hover template for Viz7 Power loss
+def get_viz7_2_hover_template():
+    
+    return """<b>Day: %{x}<br><b>Power Loss: %{y:.2f} <extra></extra>"""
+
+# Hover template for Viz7 Energy loss
+def get_viz7_1_hover_template():
+    
+    return """<b>Day: %{x}<br><b>Energy Loss: %{y:.3f} <extra></extra>"""
