@@ -4,8 +4,14 @@ import plotly.express as px
 
 
 def get_monthly_current_plot(data):
-    
-    data = preprocess.get_monthly_average_current(data)
+    '''
+        Args:
+            dataframe: The dataframe to process
+        Returns:
+            fig: The fig consists of the trend over the years 
+    '''
+    # preprocess 
+    data = preprocess.get_monthly_average_current(data)  
     
     # Plot line chart for viz 8
     fig = px.line(data,

@@ -19,7 +19,7 @@ def get_transformer_avg_current_plot (data1,data2, year):
         name = 'Weekdays',
         marker_color = 'green',
         line_shape = 'spline',
-        hovertemplate = template.get_hover_template_viz9_linechart(),
+        hovertemplate = template.get_hover_template_viz9_barchart(),
         ),
     )
     fig = fig.add_trace(go.Scatter(x=df2.Time,
@@ -28,7 +28,7 @@ def get_transformer_avg_current_plot (data1,data2, year):
         name = 'Weekends',
         marker_color = 'blue',
         line_shape = 'spline',
-        hovertemplate = template.get_hover_template_viz9_linechart(),
+        hovertemplate = template.get_hover_template_viz9_barchart(),
         ),
     )
 

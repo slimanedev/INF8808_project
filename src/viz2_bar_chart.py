@@ -6,10 +6,16 @@ import template
 
 
 def BarChart(data, date_range):
-        
+        '''
+        Args:
+            dataframe: The dataframe to process
+            date-range: The time-frame specified by the slider
+        Returns:
+            fig: The fig consists of the distribution of tap changer's numbers over each tap position
+        '''
         Duration = {0:[7,'Last 7-days'], 1:[30, 'Last 30-days'], 2:'All_time_data'}
 
-# Get the data for the selected duration
+        # Get the data for the selected duration
         if date_range==2: selected_data=data
         else:
                 duration = Duration[date_range][0]

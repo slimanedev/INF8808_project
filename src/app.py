@@ -1,10 +1,3 @@
-"""
-Commands : 
-To install a virtual env : python -m pip install --user virtualenv
-To create a virtual env : python -m virtualenv -p python3.8 venv
-To activate a virtual env : source venv/bin/activate
-
-"""
 import pathlib, dash
 import dash_bootstrap_components as dbc
 import dash_html_components as html
@@ -55,7 +48,6 @@ sidebar = html.Div(
                 dbc.NavLink("Dashboard", href="/", active="exact"),
                 dbc.NavLink("Transformer Performance", href="/page-1", active="exact"),
                 dbc.NavLink("Tap changer Performance", href="/page-2", active="exact"),
-                #dbc.NavLink("Data Description", href="/DataDescription.pdf", active="exact"),
             ],
             vertical=True,
             pills=True,

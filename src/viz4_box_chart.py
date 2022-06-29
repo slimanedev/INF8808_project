@@ -21,9 +21,9 @@ def plot_box_chart(data, year):
     # Add mean time period to switch tap as an horizontal-dotted-black-line
     fig.add_hline(y = global_average,
         line_dash = "dot",
-        annotation_text = "All-time average tap operation time", 
+        annotation_text = "All-time average", 
         annotation_position = "bottom left",
-        annotation_font_size = 15,
+        annotation_font_size = 12,
         annotation_font_color = "black"
     )
     
@@ -32,12 +32,12 @@ def plot_box_chart(data, year):
 
     # Add critical time period as an horizontal-dashed-red-line 
     fig.add_hline(y = critical_value,
-        line_dash = 'dash',
+        line_dash = 'dot',
         line_color = 'red',
-        annotation_text = "Critical value not to reach",
-        annotation_position = "top right",
-        annotation_font_size = 15,
-        annotation_font_color = "black",
+        annotation_text = "Critical value (not to reach)",
+        annotation_position = "top left",
+        annotation_font_size = 12,
+        annotation_font_color = "red",
     )
     
     # Update layout
