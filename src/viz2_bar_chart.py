@@ -16,9 +16,10 @@ def BarChart(data, date_range):
         Duration = {0:[7,'Last 7-days'], 1:[30, 'Last 30-days'], 2:'All_time_data'}
 
         # Get the data for the selected duration
-        if date_range==2: selected_data=data
+        if date_range==2: selected_data=data; label=Duration[2]
         else:
                 duration = Duration[date_range][0]
+                label= Duration[date_range][1]
                 end = data['Date'].iloc[-1]                                               
                 start = end - datetime.timedelta(days = duration)                      
                 selected_data = data.loc[(data['Date'] >= start)& (data['Date'] <= (end))] 
@@ -42,7 +43,7 @@ def BarChart(data, date_range):
         fig.update_traces(hovertemplate = template.get_hover_template_viz2())
 
         # Update layout
-        fig.update_layout(title="The number of tap changes per each tap position for the selected timeframe",
+        fig.update_layout(title=f"The number of tap changes per each tap position for the {label}",
                           yaxis_type='category')
 
 
