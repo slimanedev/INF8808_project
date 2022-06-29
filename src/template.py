@@ -83,7 +83,7 @@ def get_hover_template_viz1():
         Sets the template for the hover tooltips in the visualization 1 in page2.
 
         Contains two labels, followed by their corresponding
-        value, separated by a colon : Date, and Tap Number.
+        value, separated by a colon : Date, and New Tap Number.
 
         The labels are bold. The values are normal weight.
     '''
@@ -126,7 +126,7 @@ def get_tap_history_hover_template():
         Sets the template for the hover tooltips in the tap recent history plot in dashboard.
 
         Contains three labels, followed by their corresponding
-        value, separated by a colon : tap number, date, and time.
+        value, separated by a colon : Tap Number, Date, and Time.
 
         The labels are bold. The values are normal weight.
     '''
