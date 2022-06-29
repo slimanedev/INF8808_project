@@ -15,7 +15,7 @@ THEME = {
     'label_background_color': '#ffffff',
 }
 
-
+# Custom theme for the app
 def create_custom_theme():
     '''
         Adds a new layout template to pio's templates.
@@ -76,16 +76,18 @@ def set_default_theme():
     pio.templates.default = 'plotly_white+custom'
     fig.update_layout(template = pio.templates.default)
 
-# Define chart templates when needed
 
+# Hover template for Viz1
 def get_hover_template_viz1():
     hovertemplate = '<b>Date: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
     return hovertemplate
 
+# Hover template for Viz2
 def get_hover_template_viz2():
     hovertemplate = '<b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
     return hovertemplate
 
+# Hover template for Viz3
 def get_viz3_hover_template():
     
     return """<span style='font-weight:bold'><b>    Max_LoadCurrent</b></span><span style='font-weight:normal'> : %{customdata[0]} <br /></span>
@@ -93,14 +95,17 @@ def get_viz3_hover_template():
     <span style='font-weight:bold'><b>Max_EnergyLoss</b></span><span style='font-weight:normal'> : %{customdata[2]} <br /></span>
     <span style='font-weight:bold'><b>Max_CircCurrent</b></span><span style='font-weight:normal'> : %{customdata[3]} <br /></span>"""
 
+# Hover template for Viz8
 def get_hover_template_viz8():
   hovertemplate = '<b>Year: %{x} <br><b>Circulatiing current: %{y:.4f}(kA) <extra></extra>'
   return hovertemplate
 
+# Hover template for Viz9
 def get_hover_template_viz9_barchart():
     hovertemplate = '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
     return hovertemplate
 
+# Hover template for bar chart in the dashboard
 def get_hover_template_dash_barchart():
     hovertemplate = '<b>Tap: %{x}<br><b>Power Loss: %{y}<extra></extra>'
     return hovertemplate
