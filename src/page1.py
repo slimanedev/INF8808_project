@@ -43,7 +43,7 @@ layout = html.Div(children=[
             html.H3('Transformer Performance',style={'textAlign':'center'}),
             html.Hr(style={'borderWidth': "0.3vh", "width": "25%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
 
-            #Display the visualization 9.1
+            # Display the visualization 9.1
             html.H5('Transformer load current for different years'),
             html.Label('Use slider below to change the year'),
             dcc.Slider(
@@ -56,7 +56,7 @@ layout = html.Div(children=[
             dcc.Graph(id = 'linegraph',
                 figure = fig91),
             
-            #Display the visualization 9.2
+            # Display the visualization 9.2
             html.H6('Use slider below to change the year'),
             dcc.Slider(
                         2015,
@@ -71,7 +71,7 @@ layout = html.Div(children=[
 
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             
-            #Display the visualization 6
+            # Display the visualization 6
             html.H5('Difference between Tap Power Loss Time and Tap Operation Time'),
             html.Label('Select the year:'),
             dcc.Dropdown(
@@ -92,7 +92,7 @@ layout = html.Div(children=[
                         style={'borderWidth': "0.3vh", "width": "55%", "color": "balck"}),
             dcc.Graph(id = 'fig-six',figure = fig6),
 
-            #Display the visualization 8
+            # Display the visualization 8
             html.Hr(style={'borderWidth': "0.3vh", "width": "75%", "color": "balck",'margin-left': "auto",'margin-right': "auto"}),
             html.H5('Variation of average tap circulating current over time'),
             dcc.Graph(figure = fig8),
@@ -101,7 +101,7 @@ layout = html.Div(children=[
 ],style={'padding': 10, 'flex': 1})
 
 
-#Callbacks for Viz 9
+# Callbacks for Viz 9
 @dash.callback(
     Output('linegraph', 'figure'),
     [Input('sliderYear1', 'value')])
@@ -123,7 +123,7 @@ def update_viz92(value):
     return fig92    
 
 
-#Callbacks for Viz 6
+# Callbacks for Viz 6
 @dash.callback(
     Output('months', 'options'),
     [Input('years', 'value')]

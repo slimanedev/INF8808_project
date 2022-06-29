@@ -20,7 +20,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Declare server for Heroku deployment
 server = app.server
 
-# styling the sidebar
+# Styling the sidebar
 SIDEBAR_STYLE = {
     "position": "fixed",
     "top": 0,
@@ -31,14 +31,14 @@ SIDEBAR_STYLE = {
     "background-color": "#f8f9fa",
 }
 
-# padding for the page content
+# Padding for the page content
 CONTENT_STYLE = {
     "margin-left": "18rem",
     "margin-right": "2rem",
     "padding": "2rem 1rem",
 }
 
-# sidebar content
+# Sidebar content
 sidebar = html.Div(
     [
         html.H2("INF8808", className="display-4"),
