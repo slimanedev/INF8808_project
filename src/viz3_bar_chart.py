@@ -5,9 +5,9 @@ import template
 
 def bar_plot_animation_Max_PowerLoss(data):
     '''
-        Draws the animated bar chart. 
-        This bar chart shows the maximum of power loss during the all years for each hours in day.
-        We can also change the number of tap position by the slider.
+        Draws the animated bar chart.
+        This bar chart shows the maximum power loss during all years for each hour in the day.
+        We can also change the number of tap positions by the slider.
         Arg:
             data: The data to be displayed
         Returns:
