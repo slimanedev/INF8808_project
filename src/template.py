@@ -79,7 +79,15 @@ def set_default_theme():
 
 # Hover template for Viz1
 def get_hover_template_viz1():
-    hovertemplate = '<b>Date: %{x}<br><b>New Tap Number: %{y} <extra></extra>'
+    '''
+        Sets the template for the hover tooltips in the visualization 1 in page2.
+
+        Contains two labels, followed by their corresponding
+        value, separated by a colon : Date, and Tap Number.
+
+        The labels are bold. The values are normal weight.
+    '''
+    hovertemplate = '<b>Date</b>: %{x}<br /><b>New Tap Number</b>: %{y} <br /><extra></extra>'
     return hovertemplate
 
 # Hover template for Viz2
@@ -123,19 +131,19 @@ def get_tap_history_hover_template():
         The labels are bold. The values are normal weight.
     '''
     # Return the hover template
-    return """<b>Tap Number</b>: %{y} <br /><b>Date</b>: %{customdata} <br /><b>Time</b>: %{x[1]} <br /><extra></extra>"""
+    hovertemplate = """<b>Tap Number</b>: %{y} <br /><b>Date</b>: %{customdata} <br /><b>Time</b>: %{x[1]} <br /><extra></extra>"""
+    return hovertemplate
 
 # Hover template for Viz6
 def get_dumbbell_hover_template():
     '''
         Sets the template for the hover tooltips in the dumbbell plot.
 
-        Contains two labels, followed by their corresponding
-        value, separated by a colon : date and calculated time.
+        Contains four labels, followed by their corresponding
+        value, separated by a colon : Date, Time, Tap Operation Time and Tap Power Loss Time.
 
-        The labels are font 'Roboto Slab' and bold. The values
-        are normal weight.
+        The labels are bold. The values are normal weight.
     '''
     # Return the hover template
-
-    return '<b>Date:</b> %{customdata[0]}'+'<br><b>Time:</b> %{x[1]}'+'<br><b>Tap Operation Time:</b> %{customdata[1]}'+'<br><b>Tap Power Loss Time:</b> %{customdata[2]}'+'<br><extra></extra>'
+    hovertemplate = '<b>Date:</b> %{customdata[0]}'+'<br><b>Time:</b> %{x[1]}'+'<br><b>Tap Operation Time:</b> %{customdata[1]}'+'<br><b>Tap Power Loss Time:</b> %{customdata[2]}'+'<br><extra></extra>'
+    return hovertemplate
