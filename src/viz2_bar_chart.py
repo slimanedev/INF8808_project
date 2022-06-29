@@ -27,7 +27,7 @@ def BarChart(data, date_range):
         tapAfter = selected_data['tapAfter'].tolist()
         counter = collections.Counter(tapAfter)
         
-# Creating the dataframe for the selected date
+        # Creating the dataframe for the selected date
         df = pd.DataFrame(counter.items(),
                 columns=['Tap position', 'Number of Change'])
         df=df.sort_values('Tap position')
