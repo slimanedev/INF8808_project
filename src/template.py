@@ -92,6 +92,12 @@ def get_hover_template_viz1():
 
 # Hover template for Viz2
 def get_hover_template_viz2():
+        '''
+        Sets the template for the hover tooltips in the visualization 2.
+
+        Contains two labels, followed by their corresponding
+        value : Number of Change, and Tap position.
+    '''
     hovertemplate = '<b>Number of Change: %{x} <br><b>Tap position: %{y}<extra></extra>'
     return hovertemplate
 
@@ -105,6 +111,12 @@ def get_viz3_hover_template():
 
 # Hover template for Viz8
 def get_hover_template_viz8():
+            '''
+        Sets the template for the hover tooltips in the visualization 2.
+
+        Contains two labels, followed by their corresponding
+        value : Year and Circulatiing current.
+    '''
   hovertemplate = '<b>Year: %{x} <br><b>Circulatiing current: %{y:.4f}(kA) <extra></extra>'
   return hovertemplate
 
