@@ -3,8 +3,7 @@ import preprocess, viz1_line_chart, viz2_bar_chart, viz4_box_chart, viz7_area_ch
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash import dcc
-from dash.dependencies import Input, Output, State
-import plotly.express as px
+from dash.dependencies import Input, Output
 import pandas as pd
 
 # Define Path to get the datas
@@ -127,7 +126,7 @@ def update_viz4(value):
     return fig_viz4
 
 
-# Callback for viz one
+# Callback for viz 1
 @dash.callback(
     Output('tap-switch', 'figure'),
     [Input('slider-duration-viz1', 'value')])
