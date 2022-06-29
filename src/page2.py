@@ -49,11 +49,11 @@ layout = html.Div(children=[
             # Display the visualization 1
             html.H5('Tap Switching Pattern'),
             html.Label('Use slider below to change the duration'),
-            dcc.Slider(0,3,step=None,id='slider-duration-viz1',value=0,marks={
+            html.Div([dcc.Slider(0,3,step=None,id='slider-duration-viz1',value=0,marks={
                                                           0: {'label': 'Past Week'},
                                                           1: {'label': 'Past Two Weeks'},
                                                           2: {'label': 'Past Three Weeks'},
-                                                          3: {'label': 'Past Month'}},),
+                                                          3: {'label': 'Past_Month'}})],style={"width": "100%"}),
             dcc.Graph(id='tap-switch',figure=fig_viz1),
             
             # Display the visualization 2

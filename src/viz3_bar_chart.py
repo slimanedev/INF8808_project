@@ -4,7 +4,12 @@ import plotly.express as px
 import template
 
 def bar_plot_animation_Max_PowerLoss(data):
-
+    '''
+        Args:
+            data: The dataframe to process
+        Returns:
+            fig: The fig consists of the distribution of tap changer's numbers over each tap position
+    '''
     # Plot bar chart for viz 3
     fig = px.bar(data,
         x = "Time_in_Hours",
