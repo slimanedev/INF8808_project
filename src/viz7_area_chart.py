@@ -1,7 +1,7 @@
 import pandas as pd
 import preprocess
 import plotly.express as px
-
+import template
 
 def area_plot_Energy_Loss(data):
     '''
