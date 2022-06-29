@@ -2,8 +2,7 @@ import dash, pathlib
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dash import dcc
-from dash.dependencies import Input, Output, State
-import plotly.express as px
+from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -39,19 +38,6 @@ fig = go.Figure(data=[
 fig.update_layout(title= 'Average power loss and energy loss per each tap position',
                   xaxis_title='Tap position',
                   barmode='stack')
-
-
-'''fig = go.Figure(go.Bar(x = oltc_data['tapBefore'],
-        y = oltc_data['tapPowerLossAmp']
-        )
-)
-fig.update_traces(marker_color = 'blue',
-        marker_line_color = 'blue',
-        marker_line_width = 1.5,
-        opacity = 0.6
-)
-fig.update_layout(title = 'Power Loss Average per Tap (kw)',
-                    xaxis_title = 'Taps')'''
 
 # Get tap recent history plot
 fig1 = tap_history_dashboard.scatter_recent_history_tap(oltc_data, selected_range = 'Past Week')
@@ -99,7 +85,7 @@ layout = html.Div(className='content', children=[
 
 
 
-# Callback for tap frequency:
+# Callback for tap frequency
 @dash.callback(
     Output('tap-frequency', 'figure'),
     [Input('tap-frequency-dropdown', 'value')])
