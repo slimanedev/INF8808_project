@@ -4,7 +4,16 @@ import plotly.express as px
 import template
 
 def bar_plot_animation_Max_PowerLoss(data):
-
+    '''
+        Draws the animated bar chart. 
+        This bar chart shows the maximum of power loss during the all years for each hours in day.
+        We can also change the number of tap position by the slider.
+        Arg:
+            data: The data to be displayed
+        Returns:
+            fig: The figure comprising the animated bar chart
+    '''
+    
     # Plot bar chart for viz 3
     fig = px.bar(data,
         x = "Time_in_Hours",
