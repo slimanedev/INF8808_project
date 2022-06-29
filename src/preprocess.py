@@ -81,6 +81,13 @@ def get_monthly_average_current (df):
 
 
 def adjust_data_for_viz7(oltc_data):
+    '''
+        Adjust the data for Viz 7
+        Args:
+            oltc_data: The dataframe to process
+        Returns:
+            The new dataframe.
+    ''' 
     oltc_data = drop_irrelevant_time(oltc_data)
     oltc_data['Date'] = pd.to_datetime(oltc_data['Date'])
 
