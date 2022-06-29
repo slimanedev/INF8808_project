@@ -140,10 +140,11 @@ def get_dumbbell_hover_template():
         Sets the template for the hover tooltips in the dumbbell plot.
 
         Contains four labels, followed by their corresponding
-        value, separated by a colon : Date, Time, Tap Operation Time and Tap Power Loss Time.
-
+        value, separated by a colon : Date, Time, Tap Operation Time, and Tap Power Loss Time.
+            - Tap Operation Time and Tap Power Loss Time are fomatted with three decimal points 
+            
         The labels are bold. The values are normal weight.
     '''
     # Return the hover template
-    hovertemplate = '<b>Date:</b> %{customdata[0]}'+'<br><b>Time:</b> %{x[1]}'+'<br><b>Tap Operation Time:</b> %{customdata[1]}'+'<br><b>Tap Power Loss Time:</b> %{customdata[2]}'+'<br><extra></extra>'
+    hovertemplate = '<b>Date:</b> %{customdata[0]}'+'<br><b>Time:</b> %{x[1]}'+'<br><b>Tap Operation Time:</b> %{customdata[1]:.3f}'+'<br><b>Tap Power Loss Time:</b> %{customdata[2]:.3f}'+'<br><extra></extra>'
     return hovertemplate
