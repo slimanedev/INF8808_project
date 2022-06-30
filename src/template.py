@@ -6,11 +6,9 @@ import plotly.io as pio
 
 
 THEME = {
-    'plot_background_color': 'beige',
     'font_family': 'Roboto',
     'accent_font_family': 'Roboto Slab',
     'dark_color': '#2A2B2E',
-    'pale_color': '#DFD9E2',
     'label_font_size': 14,
     'label_background_color': '#ffffff',
 }
@@ -25,26 +23,14 @@ def create_custom_theme():
         the THEME dictionary, using the dark
         color.
 
-        The plot background and paper background
-        are the background color defined
-        above in the THEME dictionary.
-
         Also, sets the hover label to have a
         background color and font size
         as defined for the label in the THEME dictionary.
         The hover label's font color is the same
-        as the theme's overall font color. The hover mode
-        is set to 'closest'.
-
-        Sets the line chart's line color to the one
-        designated in the THEME dictionary. Also sets
-        the color scale to be used by the heatmap
-        to the one in the THEME dictionary.
-
-        Specifies the x-axis ticks are tilted 45
-        degrees to the right.
+        as the theme's overall font color. 
+        
     '''
-    # TODO : Generate template described above
+    # Generate template described above
     pio.templates['custom'] = dict(
         layout = go.Layout(
         title_font = dict(family = THEME['font_family'],
