@@ -56,7 +56,7 @@ sidebar = html.Div(
         dbc.Button("Data Description", id="btn-download-txt",color="secondary",outline=True),
         dcc.Download(id="download-text"),
         html.Hr(),
-        dbc.Button("Demo video", href="https://www.youtube.com/watch?v=oiKj0Z_Xnjc",color="secondary",outline=True,target="_blank")
+        dbc.Button("Demo video", href="https://www.youtube.com/watch?v=LulsvvZYw3g",color="secondary",outline=True,target="_blank")
 
     ],
     style=SIDEBAR_STYLE,
