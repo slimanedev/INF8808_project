@@ -5,6 +5,7 @@ import template
 
 def bar_plot_animation_Max_PowerLoss(data):
     '''
+    Get the bar chart with animation for the viz 3
         Args:
             data: The dataframe to process
         Returns:

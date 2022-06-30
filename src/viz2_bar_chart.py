@@ -46,5 +46,4 @@ def BarChart(data, date_range):
         fig.update_layout(title=f"The number of tap changes per each tap position for the {label}",
                           yaxis_type='category')
 
-
         return fig

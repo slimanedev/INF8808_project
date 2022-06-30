@@ -3,7 +3,14 @@ import plotly.express as px
 
 # This function is for the all time data
 def plot_box_chart(data, year):
-    
+    '''
+    Get the box chart for the viz 4
+        Args:
+            data: The dataframe to process
+            year: selected year
+        Returns:
+            fig: The box chart
+    '''
     data['Date'] = pd.to_datetime(data['Date'])
     idx1 = data['Date'].dt.year == year
     df = data[idx1]
