@@ -128,11 +128,21 @@ def get_hover_template_viz8():
 
 # Hover template for Viz9
 def get_hover_template_viz9_barchart():
+    """
+        Sets the template for the hover tooltips in the visualization 9.
+
+        Contains two labels, followed by their corresponding value
+    """
     hovertemplate = '<b>Time (hour): %{x}<br><b>Maximum load current: %{y} (KA) <extra></extra>'
     return hovertemplate
 
 # Hover template for bar chart in the dashboard
 def get_hover_template_dash_barchart():
+    """
+        Sets the template for the hover tooltips in the bar chart displayed in the dashboard.
+
+        Contains two labels, followed by their corresponding value
+    """
     hovertemplate = '<b>Tap: %{x}<br><b>Power Loss: %{y}<extra></extra>'
     return hovertemplate
 
@@ -171,7 +181,6 @@ def get_dumbbell_hover_template():
 def get_viz7_2_hover_template():
     '''
         Sets the template for the hover tooltips in the Viz 7 (power loss plot).
-        
         values are rounded to the two decimal places.
     '''
     return """<b>Day: %{x}<br><b>Power Loss: %{y:.2f} <extra></extra>"""
@@ -180,7 +189,6 @@ def get_viz7_2_hover_template():
 def get_viz7_1_hover_template():
     '''
         Sets the template for the hover tooltips in the Viz 7 (Energy loss plot).
-        
         values are rounded to the three decimal places.
     '''
     return """<b>Day: %{x}<br><b>Energy Loss: %{y:.3f} <extra></extra>"""
