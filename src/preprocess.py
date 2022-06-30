@@ -35,7 +35,13 @@ def filter_by_year_month(dataframe, year, month):
     return df_year_month
   
 def get_traf_wd_data(data):
-       
+    '''
+        Get weekend data
+        Args:
+            data: The dataframe to process
+        Returns:
+            The new dataframe.
+    '''   
     df = data.copy()
     df['Date'] = pd.to_datetime(df['Date'])
     idx = df['Date'].dt.weekday < 5                             # Monday to Friday = 0 to 4
@@ -45,7 +51,13 @@ def get_traf_wd_data(data):
     return wd_data
 
 def get_traf_we_data(data):
-       
+    '''
+        Get weekday data
+        Args:
+            data: The dataframe to process
+        Returns:
+            The new dataframe.
+    ''' 
     df = data.copy()
     df['Date'] = pd.to_datetime(df['Date'])
     idx = df['Date'].dt.weekday > 4                             # Monday to Friday = 0 to 4
@@ -68,7 +80,13 @@ def drop_irrelevant_time(data):
     return new_data
 
 def get_monthly_average_current (df):
-
+    '''
+        Get monthly average current
+        Args:
+            df: The dataframe to process
+        Returns:
+            The new dataframe.
+    ''' 
     df1 = df[['Date', 'Time', 'TrafoLoadCurr', 'tapCircCurrAmp']]
     df1['year'] = df1['Date'].dt.year
     df1['month'] = df1['Date'].dt.month_name()
